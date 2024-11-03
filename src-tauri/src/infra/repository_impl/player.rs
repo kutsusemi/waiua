@@ -5,7 +5,7 @@ use crate::domain::player;
 pub struct PlayerRepositoryImpl;
 
 impl player::PlayerRepository for PlayerRepositoryImpl {
-    fn get_player(&self) -> Result<player::Player,String> {
-        Ok(player::Player{})
+    fn get_player(&self) -> Result<player::Player, String> {
+        Ok(player::Player {})
     }
 }

@@ -1,7 +1,6 @@
-
 use super::app_handle::{MyAppHandle, MyAppHandleImpl};
-fn hello_exec(app_handle: impl MyAppHandle) -> Result<(),String> {
-    print!("{}",app_handle.get_app()?);
+fn hello_exec(app_handle: impl MyAppHandle) -> Result<(), String> {
+    print!("{}", app_handle.get_app()?);
     Ok(())
 }
 

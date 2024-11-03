@@ -1,7 +1,5 @@
-
-
-pub trait MyAppHandle{
-    fn get_app(&self) -> Result<String,String>;
+pub trait MyAppHandle {
+    fn get_app(&self) -> Result<String, String>;
 }
 
 pub struct MyAppHandleImpl {
@@ -14,7 +12,7 @@ impl MyAppHandleImpl {
     }
 }
 impl MyAppHandle for MyAppHandleImpl {
-    fn get_app(&self) -> Result<String,String> {
+    fn get_app(&self) -> Result<String, String> {
         Ok("Hello from Rust!".to_string())
     }
 }
@@ -22,15 +20,14 @@ impl MyAppHandle for MyAppHandleImpl {
 pub mod tests {
     use super::*;
 
-    pub struct MyAppandleMock {
-    }
+    pub struct MyAppandleMock {}
     impl MyAppandleMock {
         pub fn new() -> Self {
             Self {}
         }
     }
     impl MyAppHandle for MyAppandleMock {
-        fn get_app(&self) -> Result<String,String> {
+        fn get_app(&self) -> Result<String, String> {
             Ok("Hello from Test!".to_string())
         }
     }

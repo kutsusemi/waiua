@@ -18,11 +18,8 @@ pub fn world(state: State<'_, AppModule>) -> Result<(), String> {
 
 #[cfg(test)]
 mod tests {
-    use tauri::test::mock_context;
-    use tauri::{test::noop_assets, Manager};
 
     use super::*;
-    use crate::commands::app_handle::tests;
     use crate::commands::dto;
     use crate::commands::state::tests::MyStateMock;
     #[test]
