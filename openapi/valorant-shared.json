@@ -1,0 +1,164 @@
+{
+  "openapi": "3.0.0",
+  "servers": [
+    {
+      "url": "https://shared.{shard}.a.pvp.net/"
+    }
+  ],
+  "info": {
+    "title": "Valorant API",
+    "version": "1.0.0",
+    "description": "Valorant API"
+  },
+  "components": {
+    "schemas": {},
+    "parameters": {}
+  },
+  "paths": {
+    "/content_service/v3/content": {
+      "get": {
+        "description": "Get a list of seasons, acts, and events",
+        "summary": "Fetch Content",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "clientVersion",
+            "in": "header"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "clientPlatform",
+            "in": "header"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "token",
+            "in": "header"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "entitlement",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DisabledIDs": {
+                      "type": "array",
+                      "items": {
+                        "nullable": true
+                      }
+                    },
+                    "Seasons": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "ID": {
+                            "type": "string",
+                            "pattern": "^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$",
+                            "description": "UUID"
+                          },
+                          "Name": {
+                            "type": "string"
+                          },
+                          "Type": {
+                            "type": "string",
+                            "enum": [
+                              "episode",
+                              "act"
+                            ]
+                          },
+                          "StartTime": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "Date in ISO 8601 format"
+                          },
+                          "EndTime": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "Date in ISO 8601 format"
+                          },
+                          "IsActive": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "ID",
+                          "Name",
+                          "Type",
+                          "StartTime",
+                          "EndTime",
+                          "IsActive"
+                        ]
+                      }
+                    },
+                    "Events": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "ID": {
+                            "type": "string",
+                            "pattern": "^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$",
+                            "description": "UUID"
+                          },
+                          "Name": {
+                            "type": "string"
+                          },
+                          "StartTime": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "Date in ISO 8601 format"
+                          },
+                          "EndTime": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "Date in ISO 8601 format"
+                          },
+                          "IsActive": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "ID",
+                          "Name",
+                          "StartTime",
+                          "EndTime",
+                          "IsActive"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "DisabledIDs",
+                    "Seasons",
+                    "Events"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

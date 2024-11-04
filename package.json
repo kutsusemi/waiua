@@ -1,26 +1,42 @@
 {
-  "name": "waiua",
-  "version": "0.1.0",
-  "description": "",
-  "type": "module",
-  "scripts": {
-    "start": "vite",
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview",
-    "tauri": "tauri"
-  },
-  "license": "MIT",
-  "dependencies": {
-    "@solidjs/router": "^0.15.0",
-    "@tauri-apps/api": "^2",
-    "@tauri-apps/plugin-shell": "^2",
-    "solid-js": "^1.7.8"
-  },
-  "devDependencies": {
-    "@tauri-apps/cli": "^2",
-    "typescript": "^5.2.2",
-    "vite": "^5.3.1",
-    "vite-plugin-solid": "^2.8.0"
-  }
+	"name": "waiua",
+	"version": "0.1.0",
+	"description": "",
+	"type": "module",
+	"scripts": {
+		"start": "vite",
+		"dev": "vite",
+		"build": "vite build",
+		"serve": "vite preview",
+		"tauri": "tauri",
+		"openapi": "run-s openapi:*",
+		"openapi:generate": "jiti ./scripts/apiDocsToOpenApi.ts",
+		"openapi:glz": "openapi-generator-cli generate -i openapi/valorant-glz.json -g rust -o src-tauri/valorant_glz --package-name valorant_glz",
+		"openapi:local": "openapi-generator-cli generate -i openapi/valorant-local.json -g rust -o src-tauri/valorant_local --package-name valorant_local",
+		"openapi:other": "openapi-generator-cli generate -i openapi/valorant-other.json -g rust -o src-tauri/valorant_other --package-name valorant_other",
+		"openapi:pd": "openapi-generator-cli generate -i openapi/valorant-pd.json -g rust -o src-tauri/valorant_pd --package-name valorant_pd",
+		"openapi:shared": "openapi-generator-cli generate -i openapi/valorant-shared.json -g rust -o src-tauri/valorant_shared --package-name valorant_shared"
+	},
+	"license": "MIT",
+	"dependencies": {
+		"@asteasolutions/zod-to-openapi": "^7.2.0",
+		"@solidjs/router": "^0.15.0",
+		"@tauri-apps/api": "^2",
+		"@tauri-apps/plugin-shell": "^2",
+		"solid-js": "^1.7.8"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"@openapitools/openapi-generator-cli": "^2.15.3",
+		"@tauri-apps/cli": "^2",
+		"@types/node": "^22.8.7",
+		"concurrently": "^9.0.1",
+		"iso-base64": "^1.0.0",
+		"jiti": "^2.4.0",
+		"npm-run-all2": "^7.0.1",
+		"typescript": "^5.2.2",
+		"vite": "^5.3.1",
+		"vite-plugin-solid": "^2.8.0",
+		"zod": "^3.23.8"
+	}
 }

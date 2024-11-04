@@ -5,6 +5,16 @@ description = "A Tauri App"
 authors = ["you"]
 edition = "2021"
 
+[workspace]
+members = [
+    "valorant_glz",
+    "valorant_local",
+    "valorant_other",
+    "valorant_pd",
+    "valorant_shared",
+]
+
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [lib]
@@ -23,6 +33,11 @@ tauri-plugin-shell = "2"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 shaku = "0.6.2"
+valorant_glz = { path = "./valorant_glz" }
+valorant_local = { path = "./valorant_local" }
+valorant_other = { path = "./valorant_other" }
+valorant_pd = { path = "./valorant_pd" }
+valorant_shared = { path = "./valorant_shared" }
 
 [dev-dependencies]
 tauri = { version = "2", features = ["test"] }
