@@ -157,7 +157,7 @@ pub async fn auth_riotgames_com_authorizeredirect_urihttps3_a2_f2_fplayvalorant_
 }
 
 /// Get the PUUID and other info from a token
-pub async fn auth_riotgames_com_userinfo_get(configuration: &configuration::Configuration, token: &str) -> Result<models::AuthRiotgamesComUserinfoGet200Response, Error<AuthRiotgamesComUserinfoGetError>> {
+pub async fn auth_riotgames_com_userinfo_get(configuration: &configuration::Configuration, ) -> Result<models::AuthRiotgamesComUserinfoGet200Response, Error<AuthRiotgamesComUserinfoGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -168,7 +168,9 @@ pub async fn auth_riotgames_com_userinfo_get(configuration: &configuration::Conf
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -186,7 +188,7 @@ pub async fn auth_riotgames_com_userinfo_get(configuration: &configuration::Conf
 }
 
 /// Gets the config file used by the Riot Client. This includes a ton of info, most of it undocumented.
-pub async fn clientconfig_rpg_riotgames_com_api_v1_config_playerapp_riot20_client_get(configuration: &configuration::Configuration, token: &str, entitlement: &str) -> Result<models::ClientconfigRpgRiotgamesComApiV1ConfigPlayerAppRiot20ClientGet200Response, Error<ClientconfigRpgRiotgamesComApiV1ConfigPlayerappRiot20ClientGetError>> {
+pub async fn clientconfig_rpg_riotgames_com_api_v1_config_playerapp_riot20_client_get(configuration: &configuration::Configuration, x_riot_entitlements_jwt: &str) -> Result<models::ClientconfigRpgRiotgamesComApiV1ConfigPlayerAppRiot20ClientGet200Response, Error<ClientconfigRpgRiotgamesComApiV1ConfigPlayerappRiot20ClientGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -197,8 +199,10 @@ pub async fn clientconfig_rpg_riotgames_com_api_v1_config_playerapp_riot20_clien
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -216,7 +220,7 @@ pub async fn clientconfig_rpg_riotgames_com_api_v1_config_playerapp_riot20_clien
 }
 
 /// Get entitlement for remote requests with a token
-pub async fn entitlements_auth_riotgames_com_api_token_v1_post(configuration: &configuration::Configuration, token: &str) -> Result<models::EntitlementsAuthRiotgamesComApiTokenV1Post200Response, Error<EntitlementsAuthRiotgamesComApiTokenV1PostError>> {
+pub async fn entitlements_auth_riotgames_com_api_token_v1_post(configuration: &configuration::Configuration, ) -> Result<models::EntitlementsAuthRiotgamesComApiTokenV1Post200Response, Error<EntitlementsAuthRiotgamesComApiTokenV1PostError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -227,7 +231,9 @@ pub async fn entitlements_auth_riotgames_com_api_token_v1_post(configuration: &c
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -245,7 +251,7 @@ pub async fn entitlements_auth_riotgames_com_api_token_v1_post(configuration: &c
 }
 
 /// Get the region for a given ID token and auth token. The ID token and auth token can be obtained from [PUT Cookie Reauth]
-pub async fn riot_geo_pas_si_riotgames_com_pas_v1_product_valorant_put(configuration: &configuration::Configuration, token: &str) -> Result<models::RiotGeoPasSiRiotgamesComPasV1ProductValorantPut200Response, Error<RiotGeoPasSiRiotgamesComPasV1ProductValorantPutError>> {
+pub async fn riot_geo_pas_si_riotgames_com_pas_v1_product_valorant_put(configuration: &configuration::Configuration, ) -> Result<models::RiotGeoPasSiRiotgamesComPasV1ProductValorantPut200Response, Error<RiotGeoPasSiRiotgamesComPasV1ProductValorantPutError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -256,7 +262,9 @@ pub async fn riot_geo_pas_si_riotgames_com_pas_v1_product_valorant_put(configura
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -274,7 +282,7 @@ pub async fn riot_geo_pas_si_riotgames_com_pas_v1_product_valorant_put(configura
 }
 
 /// Get a PAS token using the auth token. The PAS token is a JWT that contains the affinity for the XMPP server.
-pub async fn riot_geo_pas_si_riotgames_com_pas_v1_service_chat_get(configuration: &configuration::Configuration, token: &str) -> Result<String, Error<RiotGeoPasSiRiotgamesComPasV1ServiceChatGetError>> {
+pub async fn riot_geo_pas_si_riotgames_com_pas_v1_service_chat_get(configuration: &configuration::Configuration, ) -> Result<String, Error<RiotGeoPasSiRiotgamesComPasV1ServiceChatGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -285,7 +293,9 @@ pub async fn riot_geo_pas_si_riotgames_com_pas_v1_service_chat_get(configuration
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;

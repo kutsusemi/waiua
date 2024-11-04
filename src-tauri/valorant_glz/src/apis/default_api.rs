@@ -242,7 +242,7 @@ pub enum PregameV1PlayersPuuidGetError {
 
 
 /// Get the current game match info
-pub async fn core_game_v1_matches_current_game_match_id_get(configuration: &configuration::Configuration, current_game_match_id: &str, token: &str, entitlement: &str, client_platform: &str, client_version: &str) -> Result<models::CoreGameV1MatchesCurrentGameMatchIdGet200Response, Error<CoreGameV1MatchesCurrentGameMatchIdGetError>> {
+pub async fn core_game_v1_matches_current_game_match_id_get(configuration: &configuration::Configuration, current_game_match_id: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::CoreGameV1MatchesCurrentGameMatchIdGet200Response, Error<CoreGameV1MatchesCurrentGameMatchIdGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -253,10 +253,12 @@ pub async fn core_game_v1_matches_current_game_match_id_get(configuration: &conf
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -274,7 +276,7 @@ pub async fn core_game_v1_matches_current_game_match_id_get(configuration: &conf
 }
 
 /// Get the current game loadout info for all players in the match
-pub async fn core_game_v1_matches_current_game_match_id_loadouts_get(configuration: &configuration::Configuration, current_game_match_id: &str, token: &str, entitlement: &str, client_platform: &str, client_version: &str) -> Result<models::CoreGameV1MatchesCurrentGameMatchIdLoadoutsGet200Response, Error<CoreGameV1MatchesCurrentGameMatchIdLoadoutsGetError>> {
+pub async fn core_game_v1_matches_current_game_match_id_loadouts_get(configuration: &configuration::Configuration, current_game_match_id: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::CoreGameV1MatchesCurrentGameMatchIdLoadoutsGet200Response, Error<CoreGameV1MatchesCurrentGameMatchIdLoadoutsGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -285,10 +287,12 @@ pub async fn core_game_v1_matches_current_game_match_id_loadouts_get(configurati
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -306,7 +310,7 @@ pub async fn core_game_v1_matches_current_game_match_id_loadouts_get(configurati
 }
 
 /// Quits the current game
-pub async fn core_game_v1_players_puuid_disassociate_current_game_match_id_post(configuration: &configuration::Configuration, puuid: &str, current_game_match_id: &str, token: &str, entitlement: &str, client_platform: &str, client_version: &str) -> Result<serde_json::Value, Error<CoreGameV1PlayersPuuidDisassociateCurrentGameMatchIdPostError>> {
+pub async fn core_game_v1_players_puuid_disassociate_current_game_match_id_post(configuration: &configuration::Configuration, puuid: &str, current_game_match_id: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<serde_json::Value, Error<CoreGameV1PlayersPuuidDisassociateCurrentGameMatchIdPostError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -317,10 +321,12 @@ pub async fn core_game_v1_players_puuid_disassociate_current_game_match_id_post(
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -338,7 +344,7 @@ pub async fn core_game_v1_players_puuid_disassociate_current_game_match_id_post(
 }
 
 /// Get the current game match ID for the provided player
-pub async fn core_game_v1_players_puuid_get(configuration: &configuration::Configuration, puuid: &str, token: &str, entitlement: &str, client_platform: &str, client_version: &str) -> Result<models::PregameV1PlayersPuuidGet200Response, Error<CoreGameV1PlayersPuuidGetError>> {
+pub async fn core_game_v1_players_puuid_get(configuration: &configuration::Configuration, puuid: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::PregameV1PlayersPuuidGet200Response, Error<CoreGameV1PlayersPuuidGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -349,10 +355,12 @@ pub async fn core_game_v1_players_puuid_get(configuration: &configuration::Confi
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -370,7 +378,7 @@ pub async fn core_game_v1_players_puuid_get(configuration: &configuration::Confi
 }
 
 /// Get information about the available gamemodes, maps, queues, and gamepods
-pub async fn parties_v1_parties_customgameconfigs_get(configuration: &configuration::Configuration, token: &str, entitlement: &str, client_platform: &str, client_version: &str) -> Result<models::PartiesV1PartiesCustomgameconfigsGet200Response, Error<PartiesV1PartiesCustomgameconfigsGetError>> {
+pub async fn parties_v1_parties_customgameconfigs_get(configuration: &configuration::Configuration, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::PartiesV1PartiesCustomgameconfigsGet200Response, Error<PartiesV1PartiesCustomgameconfigsGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -381,10 +389,12 @@ pub async fn parties_v1_parties_customgameconfigs_get(configuration: &configurat
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -402,7 +412,7 @@ pub async fn parties_v1_parties_customgameconfigs_get(configuration: &configurat
 }
 
 /// Set the accessibility of the party
-pub async fn parties_v1_parties_party_id_accessibility_post(configuration: &configuration::Configuration, party_id: &str, token: &str, entitlement: &str, client_platform: &str, client_version: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdAccessibilityPostError>> {
+pub async fn parties_v1_parties_party_id_accessibility_post(configuration: &configuration::Configuration, party_id: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdAccessibilityPostError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -413,10 +423,12 @@ pub async fn parties_v1_parties_party_id_accessibility_post(configuration: &conf
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -434,7 +446,7 @@ pub async fn parties_v1_parties_party_id_accessibility_post(configuration: &conf
 }
 
 /// Changes the settings for a custom game
-pub async fn parties_v1_parties_party_id_customgamesettings_post(configuration: &configuration::Configuration, party_id: &str, token: &str, entitlement: &str, client_version: &str, client_platform: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdCustomgamesettingsPostError>> {
+pub async fn parties_v1_parties_party_id_customgamesettings_post(configuration: &configuration::Configuration, party_id: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdCustomgamesettingsPostError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -445,10 +457,12 @@ pub async fn parties_v1_parties_party_id_customgamesettings_post(configuration: 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -466,7 +480,7 @@ pub async fn parties_v1_parties_party_id_customgamesettings_post(configuration: 
 }
 
 /// Get the party information for the given party ID
-pub async fn parties_v1_parties_party_id_get(configuration: &configuration::Configuration, party_id: &str, token: &str, entitlement: &str, client_platform: &str, client_version: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdGetError>> {
+pub async fn parties_v1_parties_party_id_get(configuration: &configuration::Configuration, party_id: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -477,10 +491,12 @@ pub async fn parties_v1_parties_party_id_get(configuration: &configuration::Conf
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -498,7 +514,7 @@ pub async fn parties_v1_parties_party_id_get(configuration: &configuration::Conf
 }
 
 /// Disable the party invite code
-pub async fn parties_v1_parties_party_id_invitecode_delete(configuration: &configuration::Configuration, party_id: &str, token: &str, entitlement: &str, client_platform: &str, client_version: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdInvitecodeDeleteError>> {
+pub async fn parties_v1_parties_party_id_invitecode_delete(configuration: &configuration::Configuration, party_id: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdInvitecodeDeleteError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -509,10 +525,12 @@ pub async fn parties_v1_parties_party_id_invitecode_delete(configuration: &confi
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -530,7 +548,7 @@ pub async fn parties_v1_parties_party_id_invitecode_delete(configuration: &confi
 }
 
 /// Generate a party invite code
-pub async fn parties_v1_parties_party_id_invitecode_post(configuration: &configuration::Configuration, party_id: &str, token: &str, entitlement: &str, client_platform: &str, client_version: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdInvitecodePostError>> {
+pub async fn parties_v1_parties_party_id_invitecode_post(configuration: &configuration::Configuration, party_id: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdInvitecodePostError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -541,10 +559,12 @@ pub async fn parties_v1_parties_party_id_invitecode_post(configuration: &configu
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -562,7 +582,7 @@ pub async fn parties_v1_parties_party_id_invitecode_post(configuration: &configu
 }
 
 /// Invite a player to the party by name and tagline
-pub async fn parties_v1_parties_party_id_invites_name_name_tag_tagline_post(configuration: &configuration::Configuration, name: &str, tagline: &str, party_id: &str, token: &str, entitlement: &str, client_version: &str, client_platform: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdInvitesNameNameTagTaglinePostError>> {
+pub async fn parties_v1_parties_party_id_invites_name_name_tag_tagline_post(configuration: &configuration::Configuration, name: &str, tagline: &str, party_id: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdInvitesNameNameTagTaglinePostError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -573,10 +593,12 @@ pub async fn parties_v1_parties_party_id_invites_name_name_tag_tagline_post(conf
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -594,7 +616,7 @@ pub async fn parties_v1_parties_party_id_invites_name_name_tag_tagline_post(conf
 }
 
 /// Enter the matchmaking queue for the party
-pub async fn parties_v1_parties_party_id_matchmaking_join_post(configuration: &configuration::Configuration, party_id: &str, token: &str, entitlement: &str, client_platform: &str, client_version: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdMatchmakingJoinPostError>> {
+pub async fn parties_v1_parties_party_id_matchmaking_join_post(configuration: &configuration::Configuration, party_id: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdMatchmakingJoinPostError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -605,10 +627,12 @@ pub async fn parties_v1_parties_party_id_matchmaking_join_post(configuration: &c
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -626,7 +650,7 @@ pub async fn parties_v1_parties_party_id_matchmaking_join_post(configuration: &c
 }
 
 /// Leave the matchmaking queue for the party
-pub async fn parties_v1_parties_party_id_matchmaking_leave_post(configuration: &configuration::Configuration, party_id: &str, token: &str, entitlement: &str, client_platform: &str, client_version: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdMatchmakingLeavePostError>> {
+pub async fn parties_v1_parties_party_id_matchmaking_leave_post(configuration: &configuration::Configuration, party_id: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdMatchmakingLeavePostError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -637,10 +661,12 @@ pub async fn parties_v1_parties_party_id_matchmaking_leave_post(configuration: &
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -658,7 +684,7 @@ pub async fn parties_v1_parties_party_id_matchmaking_leave_post(configuration: &
 }
 
 /// Refresh the competitive tier of the specified player
-pub async fn parties_v1_parties_party_id_members_puuid_refresh_competitive_tier_post(configuration: &configuration::Configuration, party_id: &str, puuid: &str, token: &str, entitlement: &str, client_version: &str, client_platform: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdMembersPuuidRefreshCompetitiveTierPostError>> {
+pub async fn parties_v1_parties_party_id_members_puuid_refresh_competitive_tier_post(configuration: &configuration::Configuration, party_id: &str, puuid: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdMembersPuuidRefreshCompetitiveTierPostError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -669,10 +695,12 @@ pub async fn parties_v1_parties_party_id_members_puuid_refresh_competitive_tier_
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -690,7 +718,7 @@ pub async fn parties_v1_parties_party_id_members_puuid_refresh_competitive_tier_
 }
 
 /// Refresh the pings of the specified player
-pub async fn parties_v1_parties_party_id_members_puuid_refresh_pings_post(configuration: &configuration::Configuration, party_id: &str, puuid: &str, token: &str, entitlement: &str, client_version: &str, client_platform: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdMembersPuuidRefreshPingsPostError>> {
+pub async fn parties_v1_parties_party_id_members_puuid_refresh_pings_post(configuration: &configuration::Configuration, party_id: &str, puuid: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdMembersPuuidRefreshPingsPostError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -701,10 +729,12 @@ pub async fn parties_v1_parties_party_id_members_puuid_refresh_pings_post(config
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -722,7 +752,7 @@ pub async fn parties_v1_parties_party_id_members_puuid_refresh_pings_post(config
 }
 
 /// Refresh the identity of the specified player
-pub async fn parties_v1_parties_party_id_members_puuid_refresh_player_identity_post(configuration: &configuration::Configuration, party_id: &str, puuid: &str, token: &str, entitlement: &str, client_version: &str, client_platform: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdMembersPuuidRefreshPlayerIdentityPostError>> {
+pub async fn parties_v1_parties_party_id_members_puuid_refresh_player_identity_post(configuration: &configuration::Configuration, party_id: &str, puuid: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdMembersPuuidRefreshPlayerIdentityPostError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -733,10 +763,12 @@ pub async fn parties_v1_parties_party_id_members_puuid_refresh_player_identity_p
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -754,7 +786,7 @@ pub async fn parties_v1_parties_party_id_members_puuid_refresh_player_identity_p
 }
 
 /// Set the ready status of a player in the current party
-pub async fn parties_v1_parties_party_id_members_puuid_set_ready_post(configuration: &configuration::Configuration, party_id: &str, puuid: &str, token: &str, entitlement: &str, client_platform: &str, client_version: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdMembersPuuidSetReadyPostError>> {
+pub async fn parties_v1_parties_party_id_members_puuid_set_ready_post(configuration: &configuration::Configuration, party_id: &str, puuid: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdMembersPuuidSetReadyPostError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -765,10 +797,12 @@ pub async fn parties_v1_parties_party_id_members_puuid_set_ready_post(configurat
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -786,7 +820,7 @@ pub async fn parties_v1_parties_party_id_members_puuid_set_ready_post(configurat
 }
 
 /// Get the party chat token
-pub async fn parties_v1_parties_party_id_muctoken_get(configuration: &configuration::Configuration, party_id: &str, token: &str, entitlement: &str, client_platform: &str, client_version: &str) -> Result<models::PartiesV1PartiesPartyIdMuctokenGet200Response, Error<PartiesV1PartiesPartyIdMuctokenGetError>> {
+pub async fn parties_v1_parties_party_id_muctoken_get(configuration: &configuration::Configuration, party_id: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::PartiesV1PartiesPartyIdMuctokenGet200Response, Error<PartiesV1PartiesPartyIdMuctokenGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -797,10 +831,12 @@ pub async fn parties_v1_parties_party_id_muctoken_get(configuration: &configurat
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -818,7 +854,7 @@ pub async fn parties_v1_parties_party_id_muctoken_get(configuration: &configurat
 }
 
 /// Change the queue for the party
-pub async fn parties_v1_parties_party_id_queue_post(configuration: &configuration::Configuration, party_id: &str, token: &str, entitlement: &str, client_platform: &str, client_version: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdQueuePostError>> {
+pub async fn parties_v1_parties_party_id_queue_post(configuration: &configuration::Configuration, party_id: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdQueuePostError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -829,10 +865,12 @@ pub async fn parties_v1_parties_party_id_queue_post(configuration: &configuratio
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -850,7 +888,7 @@ pub async fn parties_v1_parties_party_id_queue_post(configuration: &configuratio
 }
 
 /// Requests to join the specified party ID
-pub async fn parties_v1_parties_party_id_request_post(configuration: &configuration::Configuration, party_id: &str, token: &str, entitlement: &str, client_platform: &str, client_version: &str) -> Result<serde_json::Value, Error<PartiesV1PartiesPartyIdRequestPostError>> {
+pub async fn parties_v1_parties_party_id_request_post(configuration: &configuration::Configuration, party_id: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<serde_json::Value, Error<PartiesV1PartiesPartyIdRequestPostError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -861,10 +899,12 @@ pub async fn parties_v1_parties_party_id_request_post(configuration: &configurat
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -882,7 +922,7 @@ pub async fn parties_v1_parties_party_id_request_post(configuration: &configurat
 }
 
 /// Decline a party invite request
-pub async fn parties_v1_parties_party_id_request_request_id_decline_post(configuration: &configuration::Configuration, request_id: &str, party_id: &str, token: &str, entitlement: &str, client_platform: &str, client_version: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdRequestRequestIdDeclinePostError>> {
+pub async fn parties_v1_parties_party_id_request_request_id_decline_post(configuration: &configuration::Configuration, request_id: &str, party_id: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdRequestRequestIdDeclinePostError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -893,10 +933,12 @@ pub async fn parties_v1_parties_party_id_request_request_id_decline_post(configu
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -914,7 +956,7 @@ pub async fn parties_v1_parties_party_id_request_request_id_decline_post(configu
 }
 
 /// Start a custom game
-pub async fn parties_v1_parties_party_id_startcustomgame_post(configuration: &configuration::Configuration, party_id: &str, token: &str, entitlement: &str, client_version: &str, client_platform: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdStartcustomgamePostError>> {
+pub async fn parties_v1_parties_party_id_startcustomgame_post(configuration: &configuration::Configuration, party_id: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::PartiesV1PartiesPartyIdGet200Response, Error<PartiesV1PartiesPartyIdStartcustomgamePostError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -925,10 +967,12 @@ pub async fn parties_v1_parties_party_id_startcustomgame_post(configuration: &co
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -946,7 +990,7 @@ pub async fn parties_v1_parties_party_id_startcustomgame_post(configuration: &co
 }
 
 /// Get the party voice token
-pub async fn parties_v1_parties_party_id_voicetoken_get(configuration: &configuration::Configuration, party_id: &str, token: &str, entitlement: &str, client_platform: &str, client_version: &str) -> Result<models::PartiesV1PartiesPartyIdMuctokenGet200Response, Error<PartiesV1PartiesPartyIdVoicetokenGetError>> {
+pub async fn parties_v1_parties_party_id_voicetoken_get(configuration: &configuration::Configuration, party_id: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::PartiesV1PartiesPartyIdMuctokenGet200Response, Error<PartiesV1PartiesPartyIdVoicetokenGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -957,10 +1001,12 @@ pub async fn parties_v1_parties_party_id_voicetoken_get(configuration: &configur
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -978,7 +1024,7 @@ pub async fn parties_v1_parties_party_id_voicetoken_get(configuration: &configur
 }
 
 /// Join a party using an invite code
-pub async fn parties_v1_players_joinbycode_code_post(configuration: &configuration::Configuration, code: &str, token: &str, entitlement: &str, client_platform: &str, client_version: &str) -> Result<models::PartiesV1PlayersPuuidGet200Response, Error<PartiesV1PlayersJoinbycodeCodePostError>> {
+pub async fn parties_v1_players_joinbycode_code_post(configuration: &configuration::Configuration, code: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::PartiesV1PlayersPuuidGet200Response, Error<PartiesV1PlayersJoinbycodeCodePostError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -989,10 +1035,12 @@ pub async fn parties_v1_players_joinbycode_code_post(configuration: &configurati
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -1010,7 +1058,7 @@ pub async fn parties_v1_players_joinbycode_code_post(configuration: &configurati
 }
 
 /// Remove a player from the current party
-pub async fn parties_v1_players_puuid_delete(configuration: &configuration::Configuration, puuid: &str, token: &str, entitlement: &str, client_version: &str, client_platform: &str) -> Result<serde_json::Value, Error<PartiesV1PlayersPuuidDeleteError>> {
+pub async fn parties_v1_players_puuid_delete(configuration: &configuration::Configuration, puuid: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<serde_json::Value, Error<PartiesV1PlayersPuuidDeleteError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1021,10 +1069,12 @@ pub async fn parties_v1_players_puuid_delete(configuration: &configuration::Conf
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -1042,7 +1092,7 @@ pub async fn parties_v1_players_puuid_delete(configuration: &configuration::Conf
 }
 
 /// Get the party information for the given player
-pub async fn parties_v1_players_puuid_get(configuration: &configuration::Configuration, puuid: &str, token: &str, entitlement: &str, client_version: &str, client_platform: &str) -> Result<models::PartiesV1PlayersPuuidGet200Response, Error<PartiesV1PlayersPuuidGetError>> {
+pub async fn parties_v1_players_puuid_get(configuration: &configuration::Configuration, puuid: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::PartiesV1PlayersPuuidGet200Response, Error<PartiesV1PlayersPuuidGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1053,10 +1103,12 @@ pub async fn parties_v1_players_puuid_get(configuration: &configuration::Configu
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -1074,7 +1126,7 @@ pub async fn parties_v1_players_puuid_get(configuration: &configuration::Configu
 }
 
 /// Get Pre-Game match data
-pub async fn pregame_v1_matches_pre_game_match_id_get(configuration: &configuration::Configuration, pre_game_match_id: &str, token: &str, entitlement: &str, client_platform: &str, client_version: &str) -> Result<models::PregameV1MatchesPreGameMatchIdGet200Response, Error<PregameV1MatchesPreGameMatchIdGetError>> {
+pub async fn pregame_v1_matches_pre_game_match_id_get(configuration: &configuration::Configuration, pre_game_match_id: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::PregameV1MatchesPreGameMatchIdGet200Response, Error<PregameV1MatchesPreGameMatchIdGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1085,10 +1137,12 @@ pub async fn pregame_v1_matches_pre_game_match_id_get(configuration: &configurat
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -1106,7 +1160,7 @@ pub async fn pregame_v1_matches_pre_game_match_id_get(configuration: &configurat
 }
 
 /// Get Pre-Game loadout data
-pub async fn pregame_v1_matches_pre_game_match_id_loadouts_get(configuration: &configuration::Configuration, pre_game_match_id: &str, token: &str, entitlement: &str, client_platform: &str, client_version: &str) -> Result<models::PregameV1MatchesPreGameMatchIdLoadoutsGet200Response, Error<PregameV1MatchesPreGameMatchIdLoadoutsGetError>> {
+pub async fn pregame_v1_matches_pre_game_match_id_loadouts_get(configuration: &configuration::Configuration, pre_game_match_id: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::PregameV1MatchesPreGameMatchIdLoadoutsGet200Response, Error<PregameV1MatchesPreGameMatchIdLoadoutsGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1117,10 +1171,12 @@ pub async fn pregame_v1_matches_pre_game_match_id_loadouts_get(configuration: &c
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -1138,7 +1194,7 @@ pub async fn pregame_v1_matches_pre_game_match_id_loadouts_get(configuration: &c
 }
 
 /// Lock in an agent   **DO NOT USE THIS FOR INSTALOCKING**   Riot doesn't like this. You may get banned or get the API restricted for the rest of us.  
-pub async fn pregame_v1_matches_pre_game_match_id_lock_agent_id_post(configuration: &configuration::Configuration, agent_id: &str, pre_game_match_id: &str, token: &str, entitlement: &str, client_platform: &str, client_version: &str) -> Result<models::PregameV1MatchesPreGameMatchIdGet200Response, Error<PregameV1MatchesPreGameMatchIdLockAgentIdPostError>> {
+pub async fn pregame_v1_matches_pre_game_match_id_lock_agent_id_post(configuration: &configuration::Configuration, agent_id: &str, pre_game_match_id: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::PregameV1MatchesPreGameMatchIdGet200Response, Error<PregameV1MatchesPreGameMatchIdLockAgentIdPostError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1149,10 +1205,12 @@ pub async fn pregame_v1_matches_pre_game_match_id_lock_agent_id_post(configurati
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -1170,7 +1228,7 @@ pub async fn pregame_v1_matches_pre_game_match_id_lock_agent_id_post(configurati
 }
 
 /// Quit the pre-game lobby
-pub async fn pregame_v1_matches_pre_game_match_id_quit_post(configuration: &configuration::Configuration, pre_game_match_id: &str, token: &str, entitlement: &str, client_platform: &str, client_version: &str) -> Result<serde_json::Value, Error<PregameV1MatchesPreGameMatchIdQuitPostError>> {
+pub async fn pregame_v1_matches_pre_game_match_id_quit_post(configuration: &configuration::Configuration, pre_game_match_id: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<serde_json::Value, Error<PregameV1MatchesPreGameMatchIdQuitPostError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1181,10 +1239,12 @@ pub async fn pregame_v1_matches_pre_game_match_id_quit_post(configuration: &conf
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -1202,7 +1262,7 @@ pub async fn pregame_v1_matches_pre_game_match_id_quit_post(configuration: &conf
 }
 
 /// Select an agent   **DO NOT USE THIS FOR INSTALOCKING**   Riot doesn't like this. You may get banned or get the API restricted for the rest of us.  
-pub async fn pregame_v1_matches_pre_game_match_id_select_agent_id_post(configuration: &configuration::Configuration, agent_id: &str, pre_game_match_id: &str, token: &str, entitlement: &str, client_platform: &str, client_version: &str) -> Result<models::PregameV1MatchesPreGameMatchIdGet200Response, Error<PregameV1MatchesPreGameMatchIdSelectAgentIdPostError>> {
+pub async fn pregame_v1_matches_pre_game_match_id_select_agent_id_post(configuration: &configuration::Configuration, agent_id: &str, pre_game_match_id: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::PregameV1MatchesPreGameMatchIdGet200Response, Error<PregameV1MatchesPreGameMatchIdSelectAgentIdPostError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1213,10 +1273,12 @@ pub async fn pregame_v1_matches_pre_game_match_id_select_agent_id_post(configura
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -1234,7 +1296,7 @@ pub async fn pregame_v1_matches_pre_game_match_id_select_agent_id_post(configura
 }
 
 /// Get the pre-game match ID for the provided player
-pub async fn pregame_v1_players_puuid_get(configuration: &configuration::Configuration, puuid: &str, token: &str, entitlement: &str, client_platform: &str, client_version: &str) -> Result<models::PregameV1PlayersPuuidGet200Response, Error<PregameV1PlayersPuuidGetError>> {
+pub async fn pregame_v1_players_puuid_get(configuration: &configuration::Configuration, puuid: &str, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::PregameV1PlayersPuuidGet200Response, Error<PregameV1PlayersPuuidGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1245,10 +1307,12 @@ pub async fn pregame_v1_players_puuid_get(configuration: &configuration::Configu
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;

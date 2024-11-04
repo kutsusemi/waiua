@@ -11,6 +11,17 @@
     "description": "Valorant API"
   },
   "components": {
+    "securitySchemes": {
+      "basicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
     "schemas": {},
     "parameters": {}
   },
@@ -19,13 +30,18 @@
       "get": {
         "description": "Get a list of seasons, acts, and events",
         "summary": "Fetch Content",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "schema": {
               "type": "string"
             },
             "required": true,
-            "name": "clientVersion",
+            "name": "X-Riot-Entitlements-JWT",
             "in": "header"
           },
           {
@@ -33,7 +49,7 @@
               "type": "string"
             },
             "required": true,
-            "name": "clientPlatform",
+            "name": "X-Riot-ClientVersion",
             "in": "header"
           },
           {
@@ -41,15 +57,7 @@
               "type": "string"
             },
             "required": true,
-            "name": "token",
-            "in": "header"
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "entitlement",
+            "name": "X-Riot-ClientPlatform",
             "in": "header"
           }
         ],

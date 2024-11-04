@@ -24,7 +24,7 @@ pub enum ContentServiceV3ContentGetError {
 
 
 /// Get a list of seasons, acts, and events
-pub async fn content_service_v3_content_get(configuration: &configuration::Configuration, client_version: &str, client_platform: &str, token: &str, entitlement: &str) -> Result<models::ContentServiceV3ContentGet200Response, Error<ContentServiceV3ContentGetError>> {
+pub async fn content_service_v3_content_get(configuration: &configuration::Configuration, x_riot_entitlements_jwt: &str, x_riot_client_version: &str, x_riot_client_platform: &str) -> Result<models::ContentServiceV3ContentGet200Response, Error<ContentServiceV3ContentGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -35,10 +35,12 @@ pub async fn content_service_v3_content_get(configuration: &configuration::Confi
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("clientVersion", client_version.to_string());
-    local_var_req_builder = local_var_req_builder.header("clientPlatform", client_platform.to_string());
-    local_var_req_builder = local_var_req_builder.header("token", token.to_string());
-    local_var_req_builder = local_var_req_builder.header("entitlement", entitlement.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-Entitlements-JWT", x_riot_entitlements_jwt.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientVersion", x_riot_client_version.to_string());
+    local_var_req_builder = local_var_req_builder.header("X-Riot-ClientPlatform", x_riot_client_platform.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;

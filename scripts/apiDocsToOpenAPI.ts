@@ -15,6 +15,7 @@ import {
 import fs from "node:fs";
 import path from "node:path";
 import console from "node:console";
+import type { SecurityRequirementObject } from "openapi3-ts/oas30";
 
 async function main() {
 	const registerMap = new Map<EndpointTypeName, OpenAPIRegistry>();
@@ -26,6 +27,7 @@ async function main() {
 		}
 		let params: { [key: string]: ZodAny } = {};
 		let headers: { [key: string]: ZodAny } = {};
+		const security: SecurityRequirementObject[] = [];
 		endpoint.suffix = endpoint.suffix
 			.replaceAll(" ", "_")
 			.replaceAll("-", "_")
@@ -42,15 +44,27 @@ async function main() {
 			);
 		}
 		if (endpoint.riotRequirements) {
-			headers = Object.assign(
-				headers,
-				Object.fromEntries(
-					Object.keys(endpoint.riotRequirements).map((key) => [
-						key,
-						z.string(),
-					]),
-				),
-			);
+			if (endpoint.riotRequirements.localAuth) {
+				security.push({ basicAuth: [] });
+			}
+			if (endpoint.riotRequirements.token) {
+				security.push({ bearerAuth: [] });
+			}
+			if (endpoint.riotRequirements.entitlement) {
+				headers = Object.assign(headers, {
+					"X-Riot-Entitlements-JWT": z.string(),
+				});
+			}
+			if (endpoint.riotRequirements.clientVersion) {
+				headers = Object.assign(headers, {
+					"X-Riot-ClientVersion": z.string(),
+				});
+			}
+			if (endpoint.riotRequirements.clientPlatform) {
+				headers = Object.assign(headers, {
+					"X-Riot-ClientPlatform": z.string(),
+				});
+			}
 		}
 		const match = endpoint.suffix.match(/{([a-zA-Z_]*)}/g);
 		if (match) {
@@ -59,11 +73,21 @@ async function main() {
 				Object.fromEntries(match.map((key) => [key.slice(1, -1), z.string()])),
 			);
 		}
+		registry.registerComponent("securitySchemes", "basicAuth", {
+			type: "http",
+			scheme: "basic",
+		});
+		registry.registerComponent("securitySchemes", "bearerAuth", {
+			type: "http",
+			scheme: "bearer",
+			bearerFormat: "JWT",
+		});
 		registry.registerPath({
 			method: (endpoint.method?.toLowerCase() ?? "get") as "get",
 			path: endpoint.type === "other" ? endpoint.suffix : `/${endpoint.suffix}`,
 			description: endpoint.description,
 			summary: endpoint.name,
+			security: security,
 			request: {
 				headers: z.object(headers),
 				params: z.object(params),

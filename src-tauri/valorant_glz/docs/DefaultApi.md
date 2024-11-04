@@ -41,7 +41,7 @@ Method | HTTP request | Description
 
 ## core_game_v1_matches_current_game_match_id_get
 
-> models::CoreGameV1MatchesCurrentGameMatchIdGet200Response core_game_v1_matches_current_game_match_id_get(current_game_match_id, token, entitlement, client_platform, client_version)
+> models::CoreGameV1MatchesCurrentGameMatchIdGet200Response core_game_v1_matches_current_game_match_id_get(current_game_match_id, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Current Game Match
 
 Get the current game match info
@@ -52,10 +52,9 @@ Get the current game match info
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **current_game_match_id** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -63,7 +62,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -75,7 +74,7 @@ No authorization required
 
 ## core_game_v1_matches_current_game_match_id_loadouts_get
 
-> models::CoreGameV1MatchesCurrentGameMatchIdLoadoutsGet200Response core_game_v1_matches_current_game_match_id_loadouts_get(current_game_match_id, token, entitlement, client_platform, client_version)
+> models::CoreGameV1MatchesCurrentGameMatchIdLoadoutsGet200Response core_game_v1_matches_current_game_match_id_loadouts_get(current_game_match_id, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Current Game Loadouts
 
 Get the current game loadout info for all players in the match
@@ -86,10 +85,9 @@ Get the current game loadout info for all players in the match
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **current_game_match_id** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -97,7 +95,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -109,7 +107,7 @@ No authorization required
 
 ## core_game_v1_players_puuid_disassociate_current_game_match_id_post
 
-> serde_json::Value core_game_v1_players_puuid_disassociate_current_game_match_id_post(puuid, current_game_match_id, token, entitlement, client_platform, client_version)
+> serde_json::Value core_game_v1_players_puuid_disassociate_current_game_match_id_post(puuid, current_game_match_id, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Current Game Quit
 
 Quits the current game
@@ -121,10 +119,9 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **puuid** | **String** |  | [required] |
 **current_game_match_id** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -132,7 +129,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -144,7 +141,7 @@ No authorization required
 
 ## core_game_v1_players_puuid_get
 
-> models::PregameV1PlayersPuuidGet200Response core_game_v1_players_puuid_get(puuid, token, entitlement, client_platform, client_version)
+> models::PregameV1PlayersPuuidGet200Response core_game_v1_players_puuid_get(puuid, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Current Game Player
 
 Get the current game match ID for the provided player
@@ -155,10 +152,9 @@ Get the current game match ID for the provided player
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **puuid** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -166,7 +162,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -178,7 +174,7 @@ No authorization required
 
 ## parties_v1_parties_customgameconfigs_get
 
-> models::PartiesV1PartiesCustomgameconfigsGet200Response parties_v1_parties_customgameconfigs_get(token, entitlement, client_platform, client_version)
+> models::PartiesV1PartiesCustomgameconfigsGet200Response parties_v1_parties_customgameconfigs_get(x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Custom Game Configs
 
 Get information about the available gamemodes, maps, queues, and gamepods
@@ -188,10 +184,9 @@ Get information about the available gamemodes, maps, queues, and gamepods
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -199,7 +194,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -211,7 +206,7 @@ No authorization required
 
 ## parties_v1_parties_party_id_accessibility_post
 
-> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_accessibility_post(party_id, token, entitlement, client_platform, client_version)
+> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_accessibility_post(party_id, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Set Party Accessibility
 
 Set the accessibility of the party
@@ -222,10 +217,9 @@ Set the accessibility of the party
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **party_id** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -233,7 +227,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -245,7 +239,7 @@ No authorization required
 
 ## parties_v1_parties_party_id_customgamesettings_post
 
-> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_customgamesettings_post(party_id, token, entitlement, client_version, client_platform)
+> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_customgamesettings_post(party_id, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Set Custom Game Settings
 
 Changes the settings for a custom game
@@ -256,10 +250,9 @@ Changes the settings for a custom game
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **party_id** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -267,7 +260,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -279,7 +272,7 @@ No authorization required
 
 ## parties_v1_parties_party_id_get
 
-> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_get(party_id, token, entitlement, client_platform, client_version)
+> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_get(party_id, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Party
 
 Get the party information for the given party ID
@@ -290,10 +283,9 @@ Get the party information for the given party ID
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **party_id** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -301,7 +293,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -313,7 +305,7 @@ No authorization required
 
 ## parties_v1_parties_party_id_invitecode_delete
 
-> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_invitecode_delete(party_id, token, entitlement, client_platform, client_version)
+> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_invitecode_delete(party_id, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Party Disable Code
 
 Disable the party invite code
@@ -324,10 +316,9 @@ Disable the party invite code
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **party_id** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -335,7 +326,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -347,7 +338,7 @@ No authorization required
 
 ## parties_v1_parties_party_id_invitecode_post
 
-> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_invitecode_post(party_id, token, entitlement, client_platform, client_version)
+> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_invitecode_post(party_id, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Party Generate Code
 
 Generate a party invite code
@@ -358,10 +349,9 @@ Generate a party invite code
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **party_id** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -369,7 +359,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -381,7 +371,7 @@ No authorization required
 
 ## parties_v1_parties_party_id_invites_name_name_tag_tagline_post
 
-> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_invites_name_name_tag_tagline_post(name, tagline, party_id, token, entitlement, client_version, client_platform)
+> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_invites_name_name_tag_tagline_post(name, tagline, party_id, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Party Invite
 
 Invite a player to the party by name and tagline
@@ -394,10 +384,9 @@ Name | Type | Description  | Required | Notes
 **name** | **String** |  | [required] |
 **tagline** | **String** |  | [required] |
 **party_id** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -405,7 +394,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -417,7 +406,7 @@ No authorization required
 
 ## parties_v1_parties_party_id_matchmaking_join_post
 
-> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_matchmaking_join_post(party_id, token, entitlement, client_platform, client_version)
+> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_matchmaking_join_post(party_id, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Enter Matchmaking Queue
 
 Enter the matchmaking queue for the party
@@ -428,10 +417,9 @@ Enter the matchmaking queue for the party
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **party_id** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -439,7 +427,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -451,7 +439,7 @@ No authorization required
 
 ## parties_v1_parties_party_id_matchmaking_leave_post
 
-> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_matchmaking_leave_post(party_id, token, entitlement, client_platform, client_version)
+> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_matchmaking_leave_post(party_id, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Leave Matchmaking Queue
 
 Leave the matchmaking queue for the party
@@ -462,10 +450,9 @@ Leave the matchmaking queue for the party
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **party_id** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -473,7 +460,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -485,7 +472,7 @@ No authorization required
 
 ## parties_v1_parties_party_id_members_puuid_refresh_competitive_tier_post
 
-> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_members_puuid_refresh_competitive_tier_post(party_id, puuid, token, entitlement, client_version, client_platform)
+> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_members_puuid_refresh_competitive_tier_post(party_id, puuid, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Refresh Competitive Tier
 
 Refresh the competitive tier of the specified player
@@ -497,10 +484,9 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **party_id** | **String** |  | [required] |
 **puuid** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -508,7 +494,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -520,7 +506,7 @@ No authorization required
 
 ## parties_v1_parties_party_id_members_puuid_refresh_pings_post
 
-> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_members_puuid_refresh_pings_post(party_id, puuid, token, entitlement, client_version, client_platform)
+> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_members_puuid_refresh_pings_post(party_id, puuid, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Refresh Pings
 
 Refresh the pings of the specified player
@@ -532,10 +518,9 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **party_id** | **String** |  | [required] |
 **puuid** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -543,7 +528,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -555,7 +540,7 @@ No authorization required
 
 ## parties_v1_parties_party_id_members_puuid_refresh_player_identity_post
 
-> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_members_puuid_refresh_player_identity_post(party_id, puuid, token, entitlement, client_version, client_platform)
+> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_members_puuid_refresh_player_identity_post(party_id, puuid, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Refresh Player Identity
 
 Refresh the identity of the specified player
@@ -567,10 +552,9 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **party_id** | **String** |  | [required] |
 **puuid** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -578,7 +562,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -590,7 +574,7 @@ No authorization required
 
 ## parties_v1_parties_party_id_members_puuid_set_ready_post
 
-> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_members_puuid_set_ready_post(party_id, puuid, token, entitlement, client_platform, client_version)
+> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_members_puuid_set_ready_post(party_id, puuid, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Party Set Member Ready
 
 Set the ready status of a player in the current party
@@ -602,10 +586,9 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **party_id** | **String** |  | [required] |
 **puuid** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -613,7 +596,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -625,7 +608,7 @@ No authorization required
 
 ## parties_v1_parties_party_id_muctoken_get
 
-> models::PartiesV1PartiesPartyIdMuctokenGet200Response parties_v1_parties_party_id_muctoken_get(party_id, token, entitlement, client_platform, client_version)
+> models::PartiesV1PartiesPartyIdMuctokenGet200Response parties_v1_parties_party_id_muctoken_get(party_id, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Party Chat Token
 
 Get the party chat token
@@ -636,10 +619,9 @@ Get the party chat token
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **party_id** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -647,7 +629,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -659,7 +641,7 @@ No authorization required
 
 ## parties_v1_parties_party_id_queue_post
 
-> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_queue_post(party_id, token, entitlement, client_platform, client_version)
+> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_queue_post(party_id, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Change Queue
 
 Change the queue for the party
@@ -670,10 +652,9 @@ Change the queue for the party
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **party_id** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -681,7 +662,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -693,7 +674,7 @@ No authorization required
 
 ## parties_v1_parties_party_id_request_post
 
-> serde_json::Value parties_v1_parties_party_id_request_post(party_id, token, entitlement, client_platform, client_version)
+> serde_json::Value parties_v1_parties_party_id_request_post(party_id, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Party Request
 
 Requests to join the specified party ID
@@ -704,10 +685,9 @@ Requests to join the specified party ID
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **party_id** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -715,7 +695,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -727,7 +707,7 @@ No authorization required
 
 ## parties_v1_parties_party_id_request_request_id_decline_post
 
-> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_request_request_id_decline_post(request_id, party_id, token, entitlement, client_platform, client_version)
+> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_request_request_id_decline_post(request_id, party_id, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Party Decline
 
 Decline a party invite request
@@ -739,10 +719,9 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **request_id** | **String** |  | [required] |
 **party_id** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -750,7 +729,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -762,7 +741,7 @@ No authorization required
 
 ## parties_v1_parties_party_id_startcustomgame_post
 
-> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_startcustomgame_post(party_id, token, entitlement, client_version, client_platform)
+> models::PartiesV1PartiesPartyIdGet200Response parties_v1_parties_party_id_startcustomgame_post(party_id, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Start Custom Game
 
 Start a custom game
@@ -773,10 +752,9 @@ Start a custom game
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **party_id** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -784,7 +762,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -796,7 +774,7 @@ No authorization required
 
 ## parties_v1_parties_party_id_voicetoken_get
 
-> models::PartiesV1PartiesPartyIdMuctokenGet200Response parties_v1_parties_party_id_voicetoken_get(party_id, token, entitlement, client_platform, client_version)
+> models::PartiesV1PartiesPartyIdMuctokenGet200Response parties_v1_parties_party_id_voicetoken_get(party_id, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Party Voice Token
 
 Get the party voice token
@@ -807,10 +785,9 @@ Get the party voice token
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **party_id** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -818,7 +795,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -830,7 +807,7 @@ No authorization required
 
 ## parties_v1_players_joinbycode_code_post
 
-> models::PartiesV1PlayersPuuidGet200Response parties_v1_players_joinbycode_code_post(code, token, entitlement, client_platform, client_version)
+> models::PartiesV1PlayersPuuidGet200Response parties_v1_players_joinbycode_code_post(code, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Party Join By Code
 
 Join a party using an invite code
@@ -841,10 +818,9 @@ Join a party using an invite code
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **code** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -852,7 +828,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -864,7 +840,7 @@ No authorization required
 
 ## parties_v1_players_puuid_delete
 
-> serde_json::Value parties_v1_players_puuid_delete(puuid, token, entitlement, client_version, client_platform)
+> serde_json::Value parties_v1_players_puuid_delete(puuid, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Party Remove Player
 
 Remove a player from the current party
@@ -875,10 +851,9 @@ Remove a player from the current party
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **puuid** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -886,7 +861,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -898,7 +873,7 @@ No authorization required
 
 ## parties_v1_players_puuid_get
 
-> models::PartiesV1PlayersPuuidGet200Response parties_v1_players_puuid_get(puuid, token, entitlement, client_version, client_platform)
+> models::PartiesV1PlayersPuuidGet200Response parties_v1_players_puuid_get(puuid, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Party Player
 
 Get the party information for the given player
@@ -909,10 +884,9 @@ Get the party information for the given player
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **puuid** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -920,7 +894,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -932,7 +906,7 @@ No authorization required
 
 ## pregame_v1_matches_pre_game_match_id_get
 
-> models::PregameV1MatchesPreGameMatchIdGet200Response pregame_v1_matches_pre_game_match_id_get(pre_game_match_id, token, entitlement, client_platform, client_version)
+> models::PregameV1MatchesPreGameMatchIdGet200Response pregame_v1_matches_pre_game_match_id_get(pre_game_match_id, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Pre-Game Match
 
 Get Pre-Game match data
@@ -943,10 +917,9 @@ Get Pre-Game match data
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **pre_game_match_id** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -954,7 +927,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -966,7 +939,7 @@ No authorization required
 
 ## pregame_v1_matches_pre_game_match_id_loadouts_get
 
-> models::PregameV1MatchesPreGameMatchIdLoadoutsGet200Response pregame_v1_matches_pre_game_match_id_loadouts_get(pre_game_match_id, token, entitlement, client_platform, client_version)
+> models::PregameV1MatchesPreGameMatchIdLoadoutsGet200Response pregame_v1_matches_pre_game_match_id_loadouts_get(pre_game_match_id, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Pre-Game Loadouts
 
 Get Pre-Game loadout data
@@ -977,10 +950,9 @@ Get Pre-Game loadout data
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **pre_game_match_id** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -988,7 +960,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1000,7 +972,7 @@ No authorization required
 
 ## pregame_v1_matches_pre_game_match_id_lock_agent_id_post
 
-> models::PregameV1MatchesPreGameMatchIdGet200Response pregame_v1_matches_pre_game_match_id_lock_agent_id_post(agent_id, pre_game_match_id, token, entitlement, client_platform, client_version)
+> models::PregameV1MatchesPreGameMatchIdGet200Response pregame_v1_matches_pre_game_match_id_lock_agent_id_post(agent_id, pre_game_match_id, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Lock Character
 
 Lock in an agent   **DO NOT USE THIS FOR INSTALOCKING**   Riot doesn't like this. You may get banned or get the API restricted for the rest of us.  
@@ -1012,10 +984,9 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **agent_id** | **String** |  | [required] |
 **pre_game_match_id** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -1023,7 +994,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1035,7 +1006,7 @@ No authorization required
 
 ## pregame_v1_matches_pre_game_match_id_quit_post
 
-> serde_json::Value pregame_v1_matches_pre_game_match_id_quit_post(pre_game_match_id, token, entitlement, client_platform, client_version)
+> serde_json::Value pregame_v1_matches_pre_game_match_id_quit_post(pre_game_match_id, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Pre-Game Quit
 
 Quit the pre-game lobby
@@ -1046,10 +1017,9 @@ Quit the pre-game lobby
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **pre_game_match_id** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -1057,7 +1027,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1069,7 +1039,7 @@ No authorization required
 
 ## pregame_v1_matches_pre_game_match_id_select_agent_id_post
 
-> models::PregameV1MatchesPreGameMatchIdGet200Response pregame_v1_matches_pre_game_match_id_select_agent_id_post(agent_id, pre_game_match_id, token, entitlement, client_platform, client_version)
+> models::PregameV1MatchesPreGameMatchIdGet200Response pregame_v1_matches_pre_game_match_id_select_agent_id_post(agent_id, pre_game_match_id, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Select Character
 
 Select an agent   **DO NOT USE THIS FOR INSTALOCKING**   Riot doesn't like this. You may get banned or get the API restricted for the rest of us.  
@@ -1081,10 +1051,9 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **agent_id** | **String** |  | [required] |
 **pre_game_match_id** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -1092,7 +1061,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1104,7 +1073,7 @@ No authorization required
 
 ## pregame_v1_players_puuid_get
 
-> models::PregameV1PlayersPuuidGet200Response pregame_v1_players_puuid_get(puuid, token, entitlement, client_platform, client_version)
+> models::PregameV1PlayersPuuidGet200Response pregame_v1_players_puuid_get(puuid, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Pre-Game Player
 
 Get the pre-game match ID for the provided player
@@ -1115,10 +1084,9 @@ Get the pre-game match ID for the provided player
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **puuid** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -1126,7 +1094,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

@@ -27,7 +27,7 @@ Method | HTTP request | Description
 
 ## account_xp_v1_players_puuid_get
 
-> models::AccountXpV1PlayersPuuidGet200Response account_xp_v1_players_puuid_get(puuid, token, entitlement, client_platform, client_version)
+> models::AccountXpV1PlayersPuuidGet200Response account_xp_v1_players_puuid_get(puuid, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Account XP
 
 Get the account level, XP, and XP history for the current player. This endpoint only works with the authenticated player's PUUID.
@@ -38,10 +38,9 @@ Get the account level, XP, and XP history for the current player. This endpoint 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **puuid** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -49,7 +48,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -61,7 +60,7 @@ No authorization required
 
 ## contract_definitions_v3_item_upgrades_get
 
-> models::ContractDefinitionsV3ItemUpgradesGet200Response contract_definitions_v3_item_upgrades_get(token, entitlement, client_platform, client_version)
+> models::ContractDefinitionsV3ItemUpgradesGet200Response contract_definitions_v3_item_upgrades_get(x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Item Upgrades
 
 Get details for item upgrades
@@ -71,10 +70,9 @@ Get details for item upgrades
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -82,7 +80,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -94,7 +92,7 @@ No authorization required
 
 ## contracts_v1_contracts_puuid_get
 
-> models::ContractsV1ContractsPuuidGet200Response contracts_v1_contracts_puuid_get(puuid, token, entitlement, client_version, client_platform)
+> models::ContractsV1ContractsPuuidGet200Response contracts_v1_contracts_puuid_get(puuid, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Contracts
 
 Get contract details including agents, battlepass, missions, and recent games
@@ -105,10 +103,9 @@ Get contract details including agents, battlepass, missions, and recent games
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **puuid** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -116,7 +113,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -128,7 +125,7 @@ No authorization required
 
 ## contracts_v1_contracts_puuid_special_contract_id_post
 
-> models::ContractsV1ContractsPuuidGet200Response contracts_v1_contracts_puuid_special_contract_id_post(contract_id, puuid, token, entitlement, client_version, client_platform)
+> models::ContractsV1ContractsPuuidGet200Response contracts_v1_contracts_puuid_special_contract_id_post(contract_id, puuid, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Activate Contract
 
 Activate a specific contract by ID
@@ -140,10 +137,9 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **contract_id** | **String** |  | [required] |
 **puuid** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -151,7 +147,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -163,7 +159,7 @@ No authorization required
 
 ## match_details_v1_matches_match_id_get
 
-> models::MatchDetailsV1MatchesMatchIdGet200Response match_details_v1_matches_match_id_get(match_id, token, entitlement, client_version, client_platform)
+> models::MatchDetailsV1MatchesMatchIdGet200Response match_details_v1_matches_match_id_get(match_id, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Match Details
 
 Get the details of a match after it ends
@@ -174,10 +170,9 @@ Get the details of a match after it ends
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **match_id** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -185,7 +180,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -197,7 +192,7 @@ No authorization required
 
 ## match_history_v1_history_puuid_get
 
-> models::MatchHistoryV1HistoryPuuidGet200Response match_history_v1_history_puuid_get(puuid, token, entitlement, client_platform, client_version)
+> models::MatchHistoryV1HistoryPuuidGet200Response match_history_v1_history_puuid_get(puuid, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Match History
 
 Get the match history for the given player
@@ -208,10 +203,9 @@ Get the match history for the given player
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **puuid** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -219,7 +213,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -231,7 +225,7 @@ No authorization required
 
 ## mmr_v1_leaderboards_affinity_na_queue_competitive_season_season_id_get
 
-> models::MmrV1LeaderboardsAffinityNaQueueCompetitiveSeasonSeasonIdGet200Response mmr_v1_leaderboards_affinity_na_queue_competitive_season_season_id_get(season_id, token, entitlement, client_platform, client_version)
+> models::MmrV1LeaderboardsAffinityNaQueueCompetitiveSeasonSeasonIdGet200Response mmr_v1_leaderboards_affinity_na_queue_competitive_season_season_id_get(season_id, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Leaderboard
 
 Get the leaderboard for a given season
@@ -242,10 +236,9 @@ Get the leaderboard for a given season
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **season_id** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -253,7 +246,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -265,7 +258,7 @@ No authorization required
 
 ## mmr_v1_players_puuid_competitiveupdates_get
 
-> models::MmrV1PlayersPuuidCompetitiveupdatesGet200Response mmr_v1_players_puuid_competitiveupdates_get(puuid, token, entitlement, client_platform, client_version)
+> models::MmrV1PlayersPuuidCompetitiveupdatesGet200Response mmr_v1_players_puuid_competitiveupdates_get(puuid, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Competitive Updates
 
 Get recent games and how they changed ranking
@@ -276,10 +269,9 @@ Get recent games and how they changed ranking
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **puuid** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -287,7 +279,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -299,7 +291,7 @@ No authorization required
 
 ## mmr_v1_players_puuid_get
 
-> models::MmrV1PlayersPuuidGet200Response mmr_v1_players_puuid_get(puuid, token, entitlement, client_platform, client_version)
+> models::MmrV1PlayersPuuidGet200Response mmr_v1_players_puuid_get(puuid, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Player MMR
 
 Get a player's MMR and history
@@ -310,10 +302,9 @@ Get a player's MMR and history
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **puuid** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -321,7 +312,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -333,7 +324,7 @@ No authorization required
 
 ## name_service_v2_players_put
 
-> Vec<models::NameServiceV2PlayersPut200ResponseInner> name_service_v2_players_put(token, entitlement, client_version, client_platform)
+> Vec<models::NameServiceV2PlayersPut200ResponseInner> name_service_v2_players_put(x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Name Service
 
 Get a player's name and tagline by their PUUID. Supports retrieving multiple players in one request.
@@ -343,10 +334,9 @@ Get a player's name and tagline by their PUUID. Supports retrieving multiple pla
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -354,7 +344,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -366,7 +356,7 @@ No authorization required
 
 ## personalization_v2_players_puuid_playerloadout_get
 
-> models::PersonalizationV2PlayersPuuidPlayerloadoutGet200Response personalization_v2_players_puuid_playerloadout_get(puuid, token, entitlement, client_platform, client_version)
+> models::PersonalizationV2PlayersPuuidPlayerloadoutGet200Response personalization_v2_players_puuid_playerloadout_get(puuid, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Player Loadout
 
 Get the player's current loadout. Only works for your own PUUID.
@@ -377,10 +367,9 @@ Get the player's current loadout. Only works for your own PUUID.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **puuid** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -388,7 +377,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -400,7 +389,7 @@ No authorization required
 
 ## personalization_v2_players_puuid_playerloadout_put
 
-> models::PersonalizationV2PlayersPuuidPlayerloadoutGet200Response personalization_v2_players_puuid_playerloadout_put(puuid, token, entitlement, client_platform, client_version)
+> models::PersonalizationV2PlayersPuuidPlayerloadoutGet200Response personalization_v2_players_puuid_playerloadout_put(puuid, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Set Player Loadout
 
 Set the player's current loadout.
@@ -411,10 +400,9 @@ Set the player's current loadout.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **puuid** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -422,7 +410,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -434,7 +422,7 @@ No authorization required
 
 ## restrictions_v3_penalties_get
 
-> models::RestrictionsV3PenaltiesGet200Response restrictions_v3_penalties_get(token, entitlement, client_platform, client_version)
+> models::RestrictionsV3PenaltiesGet200Response restrictions_v3_penalties_get(x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Penalties
 
 Get the matchmaking penalties for the given player
@@ -444,10 +432,9 @@ Get the matchmaking penalties for the given player
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -455,7 +442,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -467,7 +454,7 @@ No authorization required
 
 ## store_v1_entitlements_puuid_item_type_id_get
 
-> models::StoreV1EntitlementsPuuidItemTypeIdGet200Response store_v1_entitlements_puuid_item_type_id_get(item_type_id, puuid, token, entitlement, client_platform, client_version)
+> models::StoreV1EntitlementsPuuidItemTypeIdGet200Response store_v1_entitlements_puuid_item_type_id_get(item_type_id, puuid, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Owned Items
 
 List what the player owns (agents, skins, buddies, ect.) Category names and IDs:    `ItemTypeID` | Name --- | --- `01bb38e1-da47-4e6a-9b3d-945fe4655707` | Agents `f85cb6f7-33e5-4dc8-b609-ec7212301948` | Contracts `d5f120f8-ff8c-4aac-92ea-f2b5acbe9475` | Sprays `dd3bf334-87f3-40bd-b043-682a57a8dc3a` | Gun Buddies `3f296c07-64c3-494c-923b-fe692a4fa1bd` | Cards `e7c63390-eda7-46e0-bb7a-a6abdacd2433` | Skins `3ad1b2b2-acdb-4524-852f-954a76ddae0a` | Skin Variants `de7caa6b-adf7-4588-bbd1-143831e786c6` | Titles  
@@ -479,10 +466,9 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **item_type_id** | **String** |  | [required] |
 **puuid** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -490,7 +476,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -502,7 +488,7 @@ No authorization required
 
 ## store_v1_offers_get
 
-> models::StoreV1OffersGet200Response store_v1_offers_get(token, entitlement, client_platform, client_version)
+> models::StoreV1OffersGet200Response store_v1_offers_get(x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Prices
 
 Get the current store prices for all items
@@ -512,10 +498,9 @@ Get the current store prices for all items
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -523,7 +508,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -535,7 +520,7 @@ No authorization required
 
 ## store_v1_wallet_puuid_get
 
-> models::StoreV1WalletPuuidGet200Response store_v1_wallet_puuid_get(puuid, token, entitlement, client_platform, client_version)
+> models::StoreV1WalletPuuidGet200Response store_v1_wallet_puuid_get(puuid, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Wallet
 
 Get the current wallet balance for the user
@@ -546,10 +531,9 @@ Get the current wallet balance for the user
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **puuid** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -557,7 +541,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -569,7 +553,7 @@ No authorization required
 
 ## store_v2_storefront_puuid_get
 
-> models::StoreV2StorefrontPuuidGet200Response store_v2_storefront_puuid_get(puuid, token, entitlement, client_platform, client_version)
+> models::StoreV2StorefrontPuuidGet200Response store_v2_storefront_puuid_get(puuid, x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Storefront
 
 Get the currently available items in the store
@@ -580,10 +564,9 @@ Get the currently available items in the store
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **puuid** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**client_version** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -591,7 +574,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

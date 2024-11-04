@@ -157,7 +157,7 @@ pub enum SwaggerV3OpenapiJsonGetError {
 
 
 /// Get the current session including player name and PUUID
-pub async fn chat_v1_session_get(configuration: &configuration::Configuration, local_auth: &str) -> Result<models::ChatV1SessionGet200Response, Error<ChatV1SessionGetError>> {
+pub async fn chat_v1_session_get(configuration: &configuration::Configuration, ) -> Result<models::ChatV1SessionGet200Response, Error<ChatV1SessionGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -168,7 +168,9 @@ pub async fn chat_v1_session_get(configuration: &configuration::Configuration, l
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("localAuth", local_auth.to_string());
+    if let Some(ref local_var_auth_conf) = local_var_configuration.basic_auth {
+        local_var_req_builder = local_var_req_builder.basic_auth(local_var_auth_conf.0.to_owned(), local_var_auth_conf.1.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -186,7 +188,7 @@ pub async fn chat_v1_session_get(configuration: &configuration::Configuration, l
 }
 
 /// Removes an outgoing friend request
-pub async fn chat_v4_friendrequests_delete(configuration: &configuration::Configuration, local_auth: &str) -> Result<serde_json::Value, Error<ChatV4FriendrequestsDeleteError>> {
+pub async fn chat_v4_friendrequests_delete(configuration: &configuration::Configuration, ) -> Result<serde_json::Value, Error<ChatV4FriendrequestsDeleteError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -197,7 +199,9 @@ pub async fn chat_v4_friendrequests_delete(configuration: &configuration::Config
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("localAuth", local_auth.to_string());
+    if let Some(ref local_var_auth_conf) = local_var_configuration.basic_auth {
+        local_var_req_builder = local_var_req_builder.basic_auth(local_var_auth_conf.0.to_owned(), local_var_auth_conf.1.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -215,7 +219,7 @@ pub async fn chat_v4_friendrequests_delete(configuration: &configuration::Config
 }
 
 /// Get a list of friend requests
-pub async fn chat_v4_friendrequests_get(configuration: &configuration::Configuration, local_auth: &str) -> Result<models::ChatV4FriendrequestsGet200Response, Error<ChatV4FriendrequestsGetError>> {
+pub async fn chat_v4_friendrequests_get(configuration: &configuration::Configuration, ) -> Result<models::ChatV4FriendrequestsGet200Response, Error<ChatV4FriendrequestsGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -226,7 +230,9 @@ pub async fn chat_v4_friendrequests_get(configuration: &configuration::Configura
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("localAuth", local_auth.to_string());
+    if let Some(ref local_var_auth_conf) = local_var_configuration.basic_auth {
+        local_var_req_builder = local_var_req_builder.basic_auth(local_var_auth_conf.0.to_owned(), local_var_auth_conf.1.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -244,7 +250,7 @@ pub async fn chat_v4_friendrequests_get(configuration: &configuration::Configura
 }
 
 /// Sends a friend request to a player. Can be used in conjunction with [GET Friend Requests] and [DELETE Remove Friend Request] to determine a player's PUUID from their game name.
-pub async fn chat_v4_friendrequests_post(configuration: &configuration::Configuration, local_auth: &str) -> Result<models::ChatV4FriendrequestsPost200Response, Error<ChatV4FriendrequestsPostError>> {
+pub async fn chat_v4_friendrequests_post(configuration: &configuration::Configuration, ) -> Result<models::ChatV4FriendrequestsPost200Response, Error<ChatV4FriendrequestsPostError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -255,7 +261,9 @@ pub async fn chat_v4_friendrequests_post(configuration: &configuration::Configur
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("localAuth", local_auth.to_string());
+    if let Some(ref local_var_auth_conf) = local_var_configuration.basic_auth {
+        local_var_req_builder = local_var_req_builder.basic_auth(local_var_auth_conf.0.to_owned(), local_var_auth_conf.1.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -273,7 +281,7 @@ pub async fn chat_v4_friendrequests_post(configuration: &configuration::Configur
 }
 
 /// Get a list of friends
-pub async fn chat_v4_friends_get(configuration: &configuration::Configuration, local_auth: &str) -> Result<models::ChatV4FriendsGet200Response, Error<ChatV4FriendsGetError>> {
+pub async fn chat_v4_friends_get(configuration: &configuration::Configuration, ) -> Result<models::ChatV4FriendsGet200Response, Error<ChatV4FriendsGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -284,7 +292,9 @@ pub async fn chat_v4_friends_get(configuration: &configuration::Configuration, l
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("localAuth", local_auth.to_string());
+    if let Some(ref local_var_auth_conf) = local_var_configuration.basic_auth {
+        local_var_req_builder = local_var_req_builder.basic_auth(local_var_auth_conf.0.to_owned(), local_var_auth_conf.1.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -302,7 +312,7 @@ pub async fn chat_v4_friends_get(configuration: &configuration::Configuration, l
 }
 
 /// Get a list of online friends and their activity   If the player is playing Valorant, `private` is a base64-encoded JSON string that contains useful information such as party and in-progress game score.
-pub async fn chat_v4_presences_get(configuration: &configuration::Configuration, local_auth: &str) -> Result<models::ChatV4PresencesGet200Response, Error<ChatV4PresencesGetError>> {
+pub async fn chat_v4_presences_get(configuration: &configuration::Configuration, ) -> Result<models::ChatV4PresencesGet200Response, Error<ChatV4PresencesGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -313,7 +323,9 @@ pub async fn chat_v4_presences_get(configuration: &configuration::Configuration,
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("localAuth", local_auth.to_string());
+    if let Some(ref local_var_auth_conf) = local_var_configuration.basic_auth {
+        local_var_req_builder = local_var_req_builder.basic_auth(local_var_auth_conf.0.to_owned(), local_var_auth_conf.1.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -331,7 +343,7 @@ pub async fn chat_v4_presences_get(configuration: &configuration::Configuration,
 }
 
 /// Get information about the participants of all active conversations or a specific conversation if a cid is provided
-pub async fn chat_v5_participants_get(configuration: &configuration::Configuration, local_auth: &str) -> Result<models::ChatV5ParticipantsGet200Response, Error<ChatV5ParticipantsGetError>> {
+pub async fn chat_v5_participants_get(configuration: &configuration::Configuration, ) -> Result<models::ChatV5ParticipantsGet200Response, Error<ChatV5ParticipantsGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -342,7 +354,9 @@ pub async fn chat_v5_participants_get(configuration: &configuration::Configurati
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("localAuth", local_auth.to_string());
+    if let Some(ref local_var_auth_conf) = local_var_configuration.basic_auth {
+        local_var_req_builder = local_var_req_builder.basic_auth(local_var_auth_conf.0.to_owned(), local_var_auth_conf.1.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -360,7 +374,7 @@ pub async fn chat_v5_participants_get(configuration: &configuration::Configurati
 }
 
 /// Get information about the current game chat
-pub async fn chat_v6_conversations_ares_coregame_get(configuration: &configuration::Configuration, local_auth: &str) -> Result<models::ChatV6ConversationsAresPartiesGet200Response, Error<ChatV6ConversationsAresCoregameGetError>> {
+pub async fn chat_v6_conversations_ares_coregame_get(configuration: &configuration::Configuration, ) -> Result<models::ChatV6ConversationsAresPartiesGet200Response, Error<ChatV6ConversationsAresCoregameGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -371,7 +385,9 @@ pub async fn chat_v6_conversations_ares_coregame_get(configuration: &configurati
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("localAuth", local_auth.to_string());
+    if let Some(ref local_var_auth_conf) = local_var_configuration.basic_auth {
+        local_var_req_builder = local_var_req_builder.basic_auth(local_var_auth_conf.0.to_owned(), local_var_auth_conf.1.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -389,7 +405,7 @@ pub async fn chat_v6_conversations_ares_coregame_get(configuration: &configurati
 }
 
 /// Get information about the party chat
-pub async fn chat_v6_conversations_ares_parties_get(configuration: &configuration::Configuration, local_auth: &str) -> Result<models::ChatV6ConversationsAresPartiesGet200Response, Error<ChatV6ConversationsAresPartiesGetError>> {
+pub async fn chat_v6_conversations_ares_parties_get(configuration: &configuration::Configuration, ) -> Result<models::ChatV6ConversationsAresPartiesGet200Response, Error<ChatV6ConversationsAresPartiesGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -400,7 +416,9 @@ pub async fn chat_v6_conversations_ares_parties_get(configuration: &configuratio
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("localAuth", local_auth.to_string());
+    if let Some(ref local_var_auth_conf) = local_var_configuration.basic_auth {
+        local_var_req_builder = local_var_req_builder.basic_auth(local_var_auth_conf.0.to_owned(), local_var_auth_conf.1.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -418,7 +436,7 @@ pub async fn chat_v6_conversations_ares_parties_get(configuration: &configuratio
 }
 
 /// Get information about the pre-game chat
-pub async fn chat_v6_conversations_ares_pregame_get(configuration: &configuration::Configuration, local_auth: &str) -> Result<models::ChatV6ConversationsAresPartiesGet200Response, Error<ChatV6ConversationsAresPregameGetError>> {
+pub async fn chat_v6_conversations_ares_pregame_get(configuration: &configuration::Configuration, ) -> Result<models::ChatV6ConversationsAresPartiesGet200Response, Error<ChatV6ConversationsAresPregameGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -429,7 +447,9 @@ pub async fn chat_v6_conversations_ares_pregame_get(configuration: &configuratio
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("localAuth", local_auth.to_string());
+    if let Some(ref local_var_auth_conf) = local_var_configuration.basic_auth {
+        local_var_req_builder = local_var_req_builder.basic_auth(local_var_auth_conf.0.to_owned(), local_var_auth_conf.1.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -447,7 +467,7 @@ pub async fn chat_v6_conversations_ares_pregame_get(configuration: &configuratio
 }
 
 /// Get information about all active conversations
-pub async fn chat_v6_conversations_get(configuration: &configuration::Configuration, local_auth: &str) -> Result<models::ChatV6ConversationsAresPartiesGet200Response, Error<ChatV6ConversationsGetError>> {
+pub async fn chat_v6_conversations_get(configuration: &configuration::Configuration, ) -> Result<models::ChatV6ConversationsAresPartiesGet200Response, Error<ChatV6ConversationsGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -458,7 +478,9 @@ pub async fn chat_v6_conversations_get(configuration: &configuration::Configurat
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("localAuth", local_auth.to_string());
+    if let Some(ref local_var_auth_conf) = local_var_configuration.basic_auth {
+        local_var_req_builder = local_var_req_builder.basic_auth(local_var_auth_conf.0.to_owned(), local_var_auth_conf.1.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -476,7 +498,7 @@ pub async fn chat_v6_conversations_get(configuration: &configuration::Configurat
 }
 
 /// Get chat history for all conversations or a specific conversation if the cid is provided
-pub async fn chat_v6_messages_get(configuration: &configuration::Configuration, local_auth: &str) -> Result<models::ChatV6MessagesGet200Response, Error<ChatV6MessagesGetError>> {
+pub async fn chat_v6_messages_get(configuration: &configuration::Configuration, ) -> Result<models::ChatV6MessagesGet200Response, Error<ChatV6MessagesGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -487,7 +509,9 @@ pub async fn chat_v6_messages_get(configuration: &configuration::Configuration, 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("localAuth", local_auth.to_string());
+    if let Some(ref local_var_auth_conf) = local_var_configuration.basic_auth {
+        local_var_req_builder = local_var_req_builder.basic_auth(local_var_auth_conf.0.to_owned(), local_var_auth_conf.1.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -505,7 +529,7 @@ pub async fn chat_v6_messages_get(configuration: &configuration::Configuration, 
 }
 
 /// Send a message to the specified group
-pub async fn chat_v6_messages_post(configuration: &configuration::Configuration, local_auth: &str) -> Result<models::ChatV6MessagesGet200Response, Error<ChatV6MessagesPostError>> {
+pub async fn chat_v6_messages_post(configuration: &configuration::Configuration, ) -> Result<models::ChatV6MessagesGet200Response, Error<ChatV6MessagesPostError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -516,7 +540,9 @@ pub async fn chat_v6_messages_post(configuration: &configuration::Configuration,
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("localAuth", local_auth.to_string());
+    if let Some(ref local_var_auth_conf) = local_var_configuration.basic_auth {
+        local_var_req_builder = local_var_req_builder.basic_auth(local_var_auth_conf.0.to_owned(), local_var_auth_conf.1.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -534,7 +560,7 @@ pub async fn chat_v6_messages_post(configuration: &configuration::Configuration,
 }
 
 /// Gets both the token and entitlement for API usage `accessToken` is used as the token and `token` is used as the entitlement.
-pub async fn entitlements_v1_token_get(configuration: &configuration::Configuration, local_auth: &str) -> Result<models::EntitlementsV1TokenGet200Response, Error<EntitlementsV1TokenGetError>> {
+pub async fn entitlements_v1_token_get(configuration: &configuration::Configuration, ) -> Result<models::EntitlementsV1TokenGet200Response, Error<EntitlementsV1TokenGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -545,7 +571,9 @@ pub async fn entitlements_v1_token_get(configuration: &configuration::Configurat
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("localAuth", local_auth.to_string());
+    if let Some(ref local_var_auth_conf) = local_var_configuration.basic_auth {
+        local_var_req_builder = local_var_req_builder.basic_auth(local_var_auth_conf.0.to_owned(), local_var_auth_conf.1.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -563,7 +591,7 @@ pub async fn entitlements_v1_token_get(configuration: &configuration::Configurat
 }
 
 /// Get help for the local client
-pub async fn help_get(configuration: &configuration::Configuration, local_auth: &str) -> Result<models::HelpGet200Response, Error<HelpGetError>> {
+pub async fn help_get(configuration: &configuration::Configuration, ) -> Result<models::HelpGet200Response, Error<HelpGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -574,7 +602,9 @@ pub async fn help_get(configuration: &configuration::Configuration, local_auth: 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("localAuth", local_auth.to_string());
+    if let Some(ref local_var_auth_conf) = local_var_configuration.basic_auth {
+        local_var_req_builder = local_var_req_builder.basic_auth(local_var_auth_conf.0.to_owned(), local_var_auth_conf.1.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -592,7 +622,7 @@ pub async fn help_get(configuration: &configuration::Configuration, local_auth: 
 }
 
 /// Gets the player username and tagline
-pub async fn player_account_aliases_v1_active_get(configuration: &configuration::Configuration, local_auth: &str) -> Result<models::PlayerAccountAliasesV1ActiveGet200Response, Error<PlayerAccountAliasesV1ActiveGetError>> {
+pub async fn player_account_aliases_v1_active_get(configuration: &configuration::Configuration, ) -> Result<models::PlayerAccountAliasesV1ActiveGet200Response, Error<PlayerAccountAliasesV1ActiveGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -603,7 +633,9 @@ pub async fn player_account_aliases_v1_active_get(configuration: &configuration:
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("localAuth", local_auth.to_string());
+    if let Some(ref local_var_auth_conf) = local_var_configuration.basic_auth {
+        local_var_req_builder = local_var_req_builder.basic_auth(local_var_auth_conf.0.to_owned(), local_var_auth_conf.1.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -621,7 +653,7 @@ pub async fn player_account_aliases_v1_active_get(configuration: &configuration:
 }
 
 /// Gets info about the running Valorant process including start arguments   Can be used to get shard, region, and puuid by parsing launch args.
-pub async fn product_session_v1_external_sessions_get(configuration: &configuration::Configuration, local_auth: &str) -> Result<std::collections::HashMap<String, models::ProductSessionV1ExternalSessionsGet200ResponseValue>, Error<ProductSessionV1ExternalSessionsGetError>> {
+pub async fn product_session_v1_external_sessions_get(configuration: &configuration::Configuration, ) -> Result<std::collections::HashMap<String, models::ProductSessionV1ExternalSessionsGet200ResponseValue>, Error<ProductSessionV1ExternalSessionsGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -632,7 +664,9 @@ pub async fn product_session_v1_external_sessions_get(configuration: &configurat
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("localAuth", local_auth.to_string());
+    if let Some(ref local_var_auth_conf) = local_var_configuration.basic_auth {
+        local_var_req_builder = local_var_req_builder.basic_auth(local_var_auth_conf.0.to_owned(), local_var_auth_conf.1.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -650,7 +684,7 @@ pub async fn product_session_v1_external_sessions_get(configuration: &configurat
 }
 
 /// Gets info about the region and locale from the Riot client
-pub async fn riotclient_region_locale_get(configuration: &configuration::Configuration, local_auth: &str) -> Result<models::RiotclientRegionLocaleGet200Response, Error<RiotclientRegionLocaleGetError>> {
+pub async fn riotclient_region_locale_get(configuration: &configuration::Configuration, ) -> Result<models::RiotclientRegionLocaleGet200Response, Error<RiotclientRegionLocaleGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -661,7 +695,9 @@ pub async fn riotclient_region_locale_get(configuration: &configuration::Configu
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("localAuth", local_auth.to_string());
+    if let Some(ref local_var_auth_conf) = local_var_configuration.basic_auth {
+        local_var_req_builder = local_var_req_builder.basic_auth(local_var_auth_conf.0.to_owned(), local_var_auth_conf.1.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -679,7 +715,7 @@ pub async fn riotclient_region_locale_get(configuration: &configuration::Configu
 }
 
 /// Get RSO user info
-pub async fn rso_auth_v1_authorization_userinfo_get(configuration: &configuration::Configuration, local_auth: &str) -> Result<models::RsoAuthV1AuthorizationUserinfoGet200Response, Error<RsoAuthV1AuthorizationUserinfoGetError>> {
+pub async fn rso_auth_v1_authorization_userinfo_get(configuration: &configuration::Configuration, ) -> Result<models::RsoAuthV1AuthorizationUserinfoGet200Response, Error<RsoAuthV1AuthorizationUserinfoGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -690,7 +726,9 @@ pub async fn rso_auth_v1_authorization_userinfo_get(configuration: &configuratio
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("localAuth", local_auth.to_string());
+    if let Some(ref local_var_auth_conf) = local_var_configuration.basic_auth {
+        local_var_req_builder = local_var_req_builder.basic_auth(local_var_auth_conf.0.to_owned(), local_var_auth_conf.1.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -708,7 +746,7 @@ pub async fn rso_auth_v1_authorization_userinfo_get(configuration: &configuratio
 }
 
 /// Fetches json Swagger docs for local endpoints. Can be imported into Swagger or Insomnia.
-pub async fn swagger_v3_openapi_json_get(configuration: &configuration::Configuration, local_auth: &str) -> Result<serde_json::Value, Error<SwaggerV3OpenapiJsonGetError>> {
+pub async fn swagger_v3_openapi_json_get(configuration: &configuration::Configuration, ) -> Result<serde_json::Value, Error<SwaggerV3OpenapiJsonGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -719,7 +757,9 @@ pub async fn swagger_v3_openapi_json_get(configuration: &configuration::Configur
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.header("localAuth", local_auth.to_string());
+    if let Some(ref local_var_auth_conf) = local_var_configuration.basic_auth {
+        local_var_req_builder = local_var_req_builder.basic_auth(local_var_auth_conf.0.to_owned(), local_var_auth_conf.1.to_owned());
+    };
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;

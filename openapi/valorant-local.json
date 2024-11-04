@@ -11,6 +11,17 @@
     "description": "Valorant API"
   },
   "components": {
+    "securitySchemes": {
+      "basicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
     "schemas": {},
     "parameters": {}
   },
@@ -19,14 +30,9 @@
       "get": {
         "description": "Get help for the local client",
         "summary": "Local Help",
-        "parameters": [
+        "security": [
           {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "localAuth",
-            "in": "header"
+            "basicAuth": []
           }
         ],
         "responses": {
@@ -75,14 +81,9 @@
       "get": {
         "description": "Gets info about the running Valorant process including start arguments\n  Can be used to get shard, region, and puuid by parsing launch args.",
         "summary": "Sessions",
-        "parameters": [
+        "security": [
           {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "localAuth",
-            "in": "header"
+            "basicAuth": []
           }
         ],
         "responses": {
@@ -187,14 +188,9 @@
       "get": {
         "description": "Get RSO user info",
         "summary": "RSO User Info",
-        "parameters": [
+        "security": [
           {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "localAuth",
-            "in": "header"
+            "basicAuth": []
           }
         ],
         "responses": {
@@ -223,14 +219,9 @@
       "get": {
         "description": "Gets info about the region and locale from the Riot client",
         "summary": "Client Region",
-        "parameters": [
+        "security": [
           {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "localAuth",
-            "in": "header"
+            "basicAuth": []
           }
         ],
         "responses": {
@@ -271,14 +262,9 @@
       "get": {
         "description": "Gets the player username and tagline",
         "summary": "Account Alias",
-        "parameters": [
+        "security": [
           {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "localAuth",
-            "in": "header"
+            "basicAuth": []
           }
         ],
         "responses": {
@@ -324,14 +310,9 @@
       "get": {
         "description": "Gets both the token and entitlement for API usage\n`accessToken` is used as the token and `token` is used as the entitlement.",
         "summary": "Entitlements Token",
-        "parameters": [
+        "security": [
           {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "localAuth",
-            "in": "header"
+            "basicAuth": []
           }
         ],
         "responses": {
@@ -383,14 +364,9 @@
       "get": {
         "description": "Get the current session including player name and PUUID",
         "summary": "Chat Session",
-        "parameters": [
+        "security": [
           {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "localAuth",
-            "in": "header"
+            "basicAuth": []
           }
         ],
         "responses": {
@@ -457,14 +433,9 @@
       "get": {
         "description": "Get a list of friends",
         "summary": "Friends",
-        "parameters": [
+        "security": [
           {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "localAuth",
-            "in": "header"
+            "basicAuth": []
           }
         ],
         "responses": {
@@ -549,14 +520,9 @@
       "post": {
         "description": "Sends a friend request to a player. Can be used in conjunction with [GET Friend Requests] and [DELETE Remove Friend Request] to determine a player's PUUID from their game name.",
         "summary": "Send Friend Request",
-        "parameters": [
+        "security": [
           {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "localAuth",
-            "in": "header"
+            "basicAuth": []
           }
         ],
         "responses": {
@@ -587,14 +553,9 @@
       "delete": {
         "description": "Removes an outgoing friend request",
         "summary": "Remove Friend Request",
-        "parameters": [
+        "security": [
           {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "localAuth",
-            "in": "header"
+            "basicAuth": []
           }
         ],
         "responses": {
@@ -613,14 +574,9 @@
       "get": {
         "description": "Get a list of friend requests",
         "summary": "Friend Requests",
-        "parameters": [
+        "security": [
           {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "localAuth",
-            "in": "header"
+            "basicAuth": []
           }
         ],
         "responses": {
@@ -694,14 +650,9 @@
       "get": {
         "description": "Get a list of online friends and their activity\n  If the player is playing Valorant, `private` is a base64-encoded JSON string that contains useful information such as party and in-progress game score.",
         "summary": "Presence",
-        "parameters": [
+        "security": [
           {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "localAuth",
-            "in": "header"
+            "basicAuth": []
           }
         ],
         "responses": {
@@ -824,14 +775,9 @@
       "get": {
         "description": "Fetches json Swagger docs for local endpoints. Can be imported into Swagger or Insomnia.",
         "summary": "Local Swagger Docs",
-        "parameters": [
+        "security": [
           {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "localAuth",
-            "in": "header"
+            "basicAuth": []
           }
         ],
         "responses": {
@@ -853,14 +799,9 @@
       "get": {
         "description": "Get information about the party chat",
         "summary": "Party Chat Info",
-        "parameters": [
+        "security": [
           {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "localAuth",
-            "in": "header"
+            "basicAuth": []
           }
         ],
         "responses": {
@@ -952,14 +893,9 @@
       "get": {
         "description": "Get information about the pre-game chat",
         "summary": "Pre-Game Chat Info",
-        "parameters": [
+        "security": [
           {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "localAuth",
-            "in": "header"
+            "basicAuth": []
           }
         ],
         "responses": {
@@ -1051,14 +987,9 @@
       "get": {
         "description": "Get information about the current game chat",
         "summary": "Current Game Chat Info",
-        "parameters": [
+        "security": [
           {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "localAuth",
-            "in": "header"
+            "basicAuth": []
           }
         ],
         "responses": {
@@ -1150,14 +1081,9 @@
       "get": {
         "description": "Get information about all active conversations",
         "summary": "All Chat Info",
-        "parameters": [
+        "security": [
           {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "localAuth",
-            "in": "header"
+            "basicAuth": []
           }
         ],
         "responses": {
@@ -1249,14 +1175,9 @@
       "get": {
         "description": "Get information about the participants of all active conversations or a specific conversation if a cid is provided",
         "summary": "Chat Participants",
-        "parameters": [
+        "security": [
           {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "localAuth",
-            "in": "header"
+            "basicAuth": []
           }
         ],
         "responses": {
@@ -1330,14 +1251,9 @@
       "post": {
         "description": "Send a message to the specified group",
         "summary": "Send Chat",
-        "parameters": [
+        "security": [
           {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "localAuth",
-            "in": "header"
+            "basicAuth": []
           }
         ],
         "responses": {
@@ -1430,14 +1346,9 @@
       "get": {
         "description": "Get chat history for all conversations or a specific conversation if the cid is provided",
         "summary": "Chat History",
-        "parameters": [
+        "security": [
           {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "localAuth",
-            "in": "header"
+            "basicAuth": []
           }
         ],
         "responses": {

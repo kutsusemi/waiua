@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## content_service_v3_content_get
 
-> models::ContentServiceV3ContentGet200Response content_service_v3_content_get(client_version, client_platform, token, entitlement)
+> models::ContentServiceV3ContentGet200Response content_service_v3_content_get(x_riot_entitlements_jwt, x_riot_client_version, x_riot_client_platform)
 Fetch Content
 
 Get a list of seasons, acts, and events
@@ -20,10 +20,9 @@ Get a list of seasons, acts, and events
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**client_version** | **String** |  | [required] |
-**client_platform** | **String** |  | [required] |
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
+**x_riot_client_version** | **String** |  | [required] |
+**x_riot_client_platform** | **String** |  | [required] |
 
 ### Return type
 
@@ -31,7 +30,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

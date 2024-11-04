@@ -98,17 +98,14 @@ No authorization required
 
 ## auth_riotgames_com_userinfo_get
 
-> models::AuthRiotgamesComUserinfoGet200Response auth_riotgames_com_userinfo_get(token)
+> models::AuthRiotgamesComUserinfoGet200Response auth_riotgames_com_userinfo_get()
 Player Info
 
 Get the PUUID and other info from a token
 
 ### Parameters
 
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**token** | **String** |  | [required] |
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -116,7 +113,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -128,7 +125,7 @@ No authorization required
 
 ## clientconfig_rpg_riotgames_com_api_v1_config_playerapp_riot20_client_get
 
-> models::ClientconfigRpgRiotgamesComApiV1ConfigPlayerAppRiot20ClientGet200Response clientconfig_rpg_riotgames_com_api_v1_config_playerapp_riot20_client_get(token, entitlement)
+> models::ClientconfigRpgRiotgamesComApiV1ConfigPlayerAppRiot20ClientGet200Response clientconfig_rpg_riotgames_com_api_v1_config_playerapp_riot20_client_get(x_riot_entitlements_jwt)
 Riot Client Config
 
 Gets the config file used by the Riot Client. This includes a ton of info, most of it undocumented.
@@ -138,8 +135,7 @@ Gets the config file used by the Riot Client. This includes a ton of info, most 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**token** | **String** |  | [required] |
-**entitlement** | **String** |  | [required] |
+**x_riot_entitlements_jwt** | **String** |  | [required] |
 
 ### Return type
 
@@ -147,7 +143,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -159,17 +155,14 @@ No authorization required
 
 ## entitlements_auth_riotgames_com_api_token_v1_post
 
-> models::EntitlementsAuthRiotgamesComApiTokenV1Post200Response entitlements_auth_riotgames_com_api_token_v1_post(token)
+> models::EntitlementsAuthRiotgamesComApiTokenV1Post200Response entitlements_auth_riotgames_com_api_token_v1_post()
 Entitlement
 
 Get entitlement for remote requests with a token
 
 ### Parameters
 
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**token** | **String** |  | [required] |
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -177,7 +170,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -189,17 +182,14 @@ No authorization required
 
 ## riot_geo_pas_si_riotgames_com_pas_v1_product_valorant_put
 
-> models::RiotGeoPasSiRiotgamesComPasV1ProductValorantPut200Response riot_geo_pas_si_riotgames_com_pas_v1_product_valorant_put(token)
+> models::RiotGeoPasSiRiotgamesComPasV1ProductValorantPut200Response riot_geo_pas_si_riotgames_com_pas_v1_product_valorant_put()
 Riot Geo
 
 Get the region for a given ID token and auth token. The ID token and auth token can be obtained from [PUT Cookie Reauth]
 
 ### Parameters
 
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**token** | **String** |  | [required] |
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -207,7 +197,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -219,17 +209,14 @@ No authorization required
 
 ## riot_geo_pas_si_riotgames_com_pas_v1_service_chat_get
 
-> String riot_geo_pas_si_riotgames_com_pas_v1_service_chat_get(token)
+> String riot_geo_pas_si_riotgames_com_pas_v1_service_chat_get()
 PAS Token
 
 Get a PAS token using the auth token. The PAS token is a JWT that contains the affinity for the XMPP server.
 
 ### Parameters
 
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**token** | **String** |  | [required] |
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -237,7 +224,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
