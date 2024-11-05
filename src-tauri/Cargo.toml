@@ -38,6 +38,8 @@ valorant_local = { path = "./valorant_local" }
 valorant_other = { path = "./valorant_other" }
 valorant_pd = { path = "./valorant_pd" }
 valorant_shared = { path = "./valorant_shared" }
+anyhow = "1.0.92"
+thiserror = "1.0.68"
 
 [dev-dependencies]
 tauri = { version = "2", features = ["test"] }

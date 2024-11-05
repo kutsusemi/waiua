@@ -1,3 +1,4 @@
+use infra::valorant::{ValorantAPI, ValorantAPIImpl};
 use tauri::Manager;
 
 mod commands;
@@ -7,7 +8,9 @@ mod module;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-    let container = module::AppModule::builder().build();
+    let container = module::AppModule::builder()
+        .with_component_override::<dyn ValorantAPI>(Box::new(ValorantAPIImpl::build()))
+        .build();
     tauri::Builder::default()
         .plugin(tauri_plugin_shell::init())
         .invoke_handler(tauri::generate_handler![
