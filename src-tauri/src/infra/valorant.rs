@@ -43,8 +43,10 @@ pub enum ValorantAPIError {
     NotInitialized(String),
     #[error("Failed to get Local API")]
     FailedToGetLocalAPI,
-    #[error("Local Error: {0}")]
-    LocalError(#[from] LocalAPIError),
+    #[error("Failed to get Pd API")]
+    FailedToGetPdAPI,
+    #[error("API Error: {0}")]
+    APIError(#[from] APIError),
     #[error("Failed read lockfile")]
     FailedReadLockfile,
     #[error("IO error: {0}")]
@@ -53,7 +55,9 @@ pub enum ValorantAPIError {
     ReqwestError(#[from] reqwest::Error),
 }
 
-pub trait ValorantAPI: shaku::Interface {}
+pub trait ValorantAPI: shaku::Interface {
+    fn get_game_state(&self) -> Result<(), ValorantAPIError>;
+}
 
 #[derive(shaku::Component)]
 #[shaku(interface = ValorantAPI)]
@@ -64,6 +68,8 @@ pub struct ValorantAPIImpl {
     uni_state: UniState,
     #[shaku(default=Err(ValorantAPIError::NotInitialized("Local".to_string())))]
     local: Result<LocalAPI, ValorantAPIError>,
+    #[shaku(default=Err(ValorantAPIError::NotInitialized("Pd".to_string())))]
+    pd: Result<PdAPI, ValorantAPIError>,
 }
 
 impl ValorantAPIImpl {
@@ -72,6 +78,7 @@ impl ValorantAPIImpl {
             initialized: None,
             uni_state: UniState::default(),
             local: Err(ValorantAPIError::NotInitialized("Local".to_string())),
+            pd: Err(ValorantAPIError::NotInitialized("Pd".to_string())),
         };
         block_on(api.init());
 
@@ -137,6 +144,9 @@ impl ValorantAPIImpl {
             .as_ref()
             .or(Err(ValorantAPIError::FailedToGetLocalAPI))
     }
+    fn get_pd(&self) -> Result<&PdAPI, ValorantAPIError> {
+        self.pd.as_ref().or(Err(ValorantAPIError::FailedToGetPdAPI))
+    }
     async fn get_token(&mut self) -> Result<(), ValorantAPIError> {
         let res = self.get_local()?.get_token().await?;
         self.uni_state.token = Some(res.token);
@@ -158,26 +168,44 @@ impl ValorantAPIImpl {
     }
 }
 
-impl ValorantAPI for ValorantAPIImpl {}
+impl ValorantAPI for ValorantAPIImpl {
+    fn get_game_state(&self) -> Result<(), ValorantAPIError> {
+        Ok(())
+        // match self.get_pd()?.get_token().await {
+        //     Ok(_) => Ok(crate::domain::game_state::GameState::Login),
+        //     Err(e) => Err(ValorantAPIError::APIError(e)),
+        // }
+    }
+}
 
 #[derive(thiserror::Error, Debug)]
-pub enum LocalAPIError {
+pub enum APIError {
     #[error("API error: {0}")]
     APIError(String),
 }
 
-impl<T: Serialize> From<valorant_local::apis::Error<T>> for LocalAPIError {
+impl<T: Serialize> From<valorant_local::apis::Error<T>> for APIError {
     fn from(value: valorant_local::apis::Error<T>) -> Self {
         match value {
             valorant_local::apis::Error::Reqwest(e) => {
-                LocalAPIError::APIError(format!("Reqwest: {:?}", e))
+                APIError::APIError(format!("Reqwest: {:?}", e))
             }
-            valorant_local::apis::Error::Io(e) => LocalAPIError::APIError(format!("IO: {:?}", e)),
-            valorant_local::apis::Error::Serde(e) => {
-                LocalAPIError::APIError(format!("Serde: {:?}", e))
-            }
+            valorant_local::apis::Error::Io(e) => APIError::APIError(format!("IO: {:?}", e)),
+            valorant_local::apis::Error::Serde(e) => APIError::APIError(format!("Serde: {:?}", e)),
             valorant_local::apis::Error::ResponseError(e) => {
-                LocalAPIError::APIError(format!("status code {}: {}", e.status, e.content))
+                APIError::APIError(format!("status code {}: {}", e.status, e.content))
+            }
+        }
+    }
+}
+impl<T: Serialize> From<valorant_pd::apis::Error<T>> for APIError {
+    fn from(value: valorant_pd::apis::Error<T>) -> Self {
+        match value {
+            valorant_pd::apis::Error::Reqwest(e) => APIError::APIError(format!("Reqwest: {:?}", e)),
+            valorant_pd::apis::Error::Io(e) => APIError::APIError(format!("IO: {:?}", e)),
+            valorant_pd::apis::Error::Serde(e) => APIError::APIError(format!("Serde: {:?}", e)),
+            valorant_pd::apis::Error::ResponseError(e) => {
+                APIError::APIError(format!("status code {}: {}", e.status, e.content))
             }
         }
     }
@@ -218,7 +246,7 @@ impl LocalAPI {
         config
     }
 
-    async fn get_token(&self) -> Result<LocalAPIGetTokenResponse, LocalAPIError> {
+    async fn get_token(&self) -> Result<LocalAPIGetTokenResponse, APIError> {
         let res = valorant_local::apis::default_api::entitlements_v1_token_get(&self.get_config())
             .await?;
         Ok(LocalAPIGetTokenResponse {
@@ -228,7 +256,7 @@ impl LocalAPI {
         })
     }
 
-    async fn get_region(&self) -> Result<LocalAPIGetRegionResponse, LocalAPIError> {
+    async fn get_region(&self) -> Result<LocalAPIGetRegionResponse, APIError> {
         let res = valorant_local::apis::default_api::product_session_v1_external_sessions_get(
             &self.get_config(),
         )
@@ -242,7 +270,7 @@ impl LocalAPI {
                     .flat_map(|s| s.split("&"))
                     .collect::<Vec<&str>>()
             })
-            .ok_or(LocalAPIError::APIError("Failed to get region".to_string()))?;
+            .ok_or(APIError::APIError("Failed to get region".to_string()))?;
         match parts[1] {
             "latam" => Ok(LocalAPIGetRegionResponse {
                 region: "latam".to_string(),
@@ -257,5 +285,54 @@ impl LocalAPI {
                 shard: parts[1].to_string(),
             }),
         }
+    }
+}
+
+#[derive(Debug, Default)]
+pub struct PdAPI {
+    region: String,
+    puuid: String,
+    entitlement: String,
+    verion: String,
+    platform: String,
+}
+
+impl PdAPI {
+    fn new(
+        region: String,
+        puuid: String,
+        entitlement: String,
+        verion: String,
+        platform: String,
+    ) -> Self {
+        PdAPI {
+            region: region,
+            puuid: puuid,
+            entitlement: entitlement,
+            verion: verion,
+            platform: platform,
+        }
+    }
+
+    fn get_config(&self) -> valorant_pd::apis::configuration::Configuration {
+        let mut config = valorant_pd::apis::configuration::Configuration::default();
+        config.client = reqwest::Client::builder()
+            .danger_accept_invalid_certs(true)
+            .build()
+            .unwrap();
+        config.base_path = format!("https://pd.{}.a.pvp.net", self.region);
+        config
+    }
+
+    async fn get_token(&self) -> Result<(), APIError> {
+        let a = valorant_pd::apis::default_api::account_xp_v1_players_puuid_get(
+            &self.get_config(),
+            self.puuid.as_str(),
+            self.entitlement.as_str(),
+            self.verion.as_str(),
+            self.platform.as_str(),
+        )
+        .await?;
+        Ok(())
     }
 }

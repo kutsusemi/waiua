@@ -12,8 +12,7 @@ pub fn run() {
         .plugin(tauri_plugin_http::init())
         .plugin(tauri_plugin_shell::init())
         .invoke_handler(tauri::generate_handler![
-            commands::hello::hello,
-            commands::world::world
+            commands::get_game_state::get_game_state,
         ])
         .setup(|app| {
             let container = module::AppModule::builder()

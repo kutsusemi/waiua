@@ -1,5 +1,4 @@
 mod app_handle;
 pub mod dto;
-pub mod hello;
+pub mod get_game_state;
 mod state;
-pub mod world;

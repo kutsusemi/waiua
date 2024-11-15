@@ -1,17 +1,17 @@
-pub trait MyAppHandle {
+pub trait CommandAppHandle {
     fn get_app(&self) -> Result<String, String>;
 }
 
-pub struct MyAppHandleImpl {
+pub struct CommandAppHandleImpl {
     app: tauri::AppHandle,
 }
 
-impl MyAppHandleImpl {
+impl CommandAppHandleImpl {
     pub fn new(app: tauri::AppHandle) -> Self {
         Self { app }
     }
 }
-impl MyAppHandle for MyAppHandleImpl {
+impl CommandAppHandle for CommandAppHandleImpl {
     fn get_app(&self) -> Result<String, String> {
         Ok("Hello from Rust!".to_string())
     }
@@ -20,13 +20,13 @@ impl MyAppHandle for MyAppHandleImpl {
 pub mod tests {
     use super::*;
 
-    pub struct MyAppandleMock {}
-    impl MyAppandleMock {
+    pub struct CommandAppHandleMock {}
+    impl CommandAppHandleMock {
         pub fn new() -> Self {
             Self {}
         }
     }
-    impl MyAppHandle for MyAppandleMock {
+    impl CommandAppHandle for CommandAppHandleMock {
         fn get_app(&self) -> Result<String, String> {
             Ok("Hello from Test!".to_string())
         }

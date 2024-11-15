@@ -5,7 +5,16 @@ use crate::domain::player;
 pub struct PlayerRepositoryImpl;
 
 impl player::PlayerRepository for PlayerRepositoryImpl {
-    fn get_player(&self) -> Result<player::Player, String> {
-        Ok(player::Player {})
+    fn get_party_of_main_player(
+        &self,
+    ) -> Result<Vec<player::Player>, crate::domain::error::DomainError> {
+        todo!()
+    }
+
+    fn get_party(
+        &self,
+        party_id: i32,
+    ) -> Result<Vec<player::Player>, crate::domain::error::DomainError> {
+        todo!()
     }
 }
