@@ -89,6 +89,7 @@ pub struct ValorantAPIImpl {
 }
 
 #[async_trait::async_trait]
+#[cfg_attr(test, mockall::automock)]
 impl ValorantAPI for ValorantAPIImpl {
     async fn get_game_state(&self) -> Result<(), ValorantAPIError> {
         match self.get_pd()?.get_token().await {
