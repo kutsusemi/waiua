@@ -33,18 +33,18 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**chat_v4_friends_get**](docs/DefaultApi.md#chat_v4_friends_get) | **GET** /chat/v4/friends | Friends
 *DefaultApi* | [**chat_v4_presences_get**](docs/DefaultApi.md#chat_v4_presences_get) | **GET** /chat/v4/presences | Presence
 *DefaultApi* | [**chat_v5_participants_get**](docs/DefaultApi.md#chat_v5_participants_get) | **GET** /chat/v5/participants | Chat Participants
-*DefaultApi* | [**chat_v6_conversations_ares_coregame_get**](docs/DefaultApi.md#chat_v6_conversations_ares_coregame_get) | **GET** /chat/v6/conversations/ares_coregame | Current Game Chat Info
-*DefaultApi* | [**chat_v6_conversations_ares_parties_get**](docs/DefaultApi.md#chat_v6_conversations_ares_parties_get) | **GET** /chat/v6/conversations/ares_parties | Party Chat Info
-*DefaultApi* | [**chat_v6_conversations_ares_pregame_get**](docs/DefaultApi.md#chat_v6_conversations_ares_pregame_get) | **GET** /chat/v6/conversations/ares_pregame | Pre-Game Chat Info
+*DefaultApi* | [**chat_v6_conversations_ares_coregame_get**](docs/DefaultApi.md#chat_v6_conversations_ares_coregame_get) | **GET** /chat/v6/conversations/ares-coregame | Current Game Chat Info
+*DefaultApi* | [**chat_v6_conversations_ares_parties_get**](docs/DefaultApi.md#chat_v6_conversations_ares_parties_get) | **GET** /chat/v6/conversations/ares-parties | Party Chat Info
+*DefaultApi* | [**chat_v6_conversations_ares_pregame_get**](docs/DefaultApi.md#chat_v6_conversations_ares_pregame_get) | **GET** /chat/v6/conversations/ares-pregame | Pre-Game Chat Info
 *DefaultApi* | [**chat_v6_conversations_get**](docs/DefaultApi.md#chat_v6_conversations_get) | **GET** /chat/v6/conversations | All Chat Info
 *DefaultApi* | [**chat_v6_messages_get**](docs/DefaultApi.md#chat_v6_messages_get) | **GET** /chat/v6/messages | Chat History
 *DefaultApi* | [**chat_v6_messages_post**](docs/DefaultApi.md#chat_v6_messages_post) | **POST** /chat/v6/messages | Send Chat
 *DefaultApi* | [**entitlements_v1_token_get**](docs/DefaultApi.md#entitlements_v1_token_get) | **GET** /entitlements/v1/token | Entitlements Token
 *DefaultApi* | [**help_get**](docs/DefaultApi.md#help_get) | **GET** /help | Local Help
-*DefaultApi* | [**player_account_aliases_v1_active_get**](docs/DefaultApi.md#player_account_aliases_v1_active_get) | **GET** /player_account/aliases/v1/active | Account Alias
-*DefaultApi* | [**product_session_v1_external_sessions_get**](docs/DefaultApi.md#product_session_v1_external_sessions_get) | **GET** /product_session/v1/external_sessions | Sessions
-*DefaultApi* | [**riotclient_region_locale_get**](docs/DefaultApi.md#riotclient_region_locale_get) | **GET** /riotclient/region_locale | Client Region
-*DefaultApi* | [**rso_auth_v1_authorization_userinfo_get**](docs/DefaultApi.md#rso_auth_v1_authorization_userinfo_get) | **GET** /rso_auth/v1/authorization/userinfo | RSO User Info
+*DefaultApi* | [**player_account_aliases_v1_active_get**](docs/DefaultApi.md#player_account_aliases_v1_active_get) | **GET** /player-account/aliases/v1/active | Account Alias
+*DefaultApi* | [**product_session_v1_external_sessions_get**](docs/DefaultApi.md#product_session_v1_external_sessions_get) | **GET** /product-session/v1/external-sessions | Sessions
+*DefaultApi* | [**riotclient_region_locale_get**](docs/DefaultApi.md#riotclient_region_locale_get) | **GET** /riotclient/region-locale | Client Region
+*DefaultApi* | [**rso_auth_v1_authorization_userinfo_get**](docs/DefaultApi.md#rso_auth_v1_authorization_userinfo_get) | **GET** /rso-auth/v1/authorization/userinfo | RSO User Info
 *DefaultApi* | [**swagger_v3_openapi_json_get**](docs/DefaultApi.md#swagger_v3_openapi_json_get) | **GET** /swagger/v3/openapi.json | Local Swagger Docs
 
 

@@ -26,10 +26,10 @@ All URIs are relative to *https://glz--1..a.pvp.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**core_game_v1_matches_current_game_match_id_get**](docs/DefaultApi.md#core_game_v1_matches_current_game_match_id_get) | **GET** /core_game/v1/matches/{current_game_match_id} | Current Game Match
-*DefaultApi* | [**core_game_v1_matches_current_game_match_id_loadouts_get**](docs/DefaultApi.md#core_game_v1_matches_current_game_match_id_loadouts_get) | **GET** /core_game/v1/matches/{current_game_match_id}/loadouts | Current Game Loadouts
-*DefaultApi* | [**core_game_v1_players_puuid_disassociate_current_game_match_id_post**](docs/DefaultApi.md#core_game_v1_players_puuid_disassociate_current_game_match_id_post) | **POST** /core_game/v1/players/{puuid}/disassociate/{current_game_match_id} | Current Game Quit
-*DefaultApi* | [**core_game_v1_players_puuid_get**](docs/DefaultApi.md#core_game_v1_players_puuid_get) | **GET** /core_game/v1/players/{puuid} | Current Game Player
+*DefaultApi* | [**core_game_v1_matches_current_game_match_id_get**](docs/DefaultApi.md#core_game_v1_matches_current_game_match_id_get) | **GET** /core-game/v1/matches/{current_game_match_id} | Current Game Match
+*DefaultApi* | [**core_game_v1_matches_current_game_match_id_loadouts_get**](docs/DefaultApi.md#core_game_v1_matches_current_game_match_id_loadouts_get) | **GET** /core-game/v1/matches/{current_game_match_id}/loadouts | Current Game Loadouts
+*DefaultApi* | [**core_game_v1_players_puuid_disassociate_current_game_match_id_post**](docs/DefaultApi.md#core_game_v1_players_puuid_disassociate_current_game_match_id_post) | **POST** /core-game/v1/players/{puuid}/disassociate/{current_game_match_id} | Current Game Quit
+*DefaultApi* | [**core_game_v1_players_puuid_get**](docs/DefaultApi.md#core_game_v1_players_puuid_get) | **GET** /core-game/v1/players/{puuid} | Current Game Player
 *DefaultApi* | [**parties_v1_parties_customgameconfigs_get**](docs/DefaultApi.md#parties_v1_parties_customgameconfigs_get) | **GET** /parties/v1/parties/customgameconfigs | Custom Game Configs
 *DefaultApi* | [**parties_v1_parties_party_id_accessibility_post**](docs/DefaultApi.md#parties_v1_parties_party_id_accessibility_post) | **POST** /parties/v1/parties/{party_id}/accessibility | Set Party Accessibility
 *DefaultApi* | [**parties_v1_parties_party_id_customgamesettings_post**](docs/DefaultApi.md#parties_v1_parties_party_id_customgamesettings_post) | **POST** /parties/v1/parties/{party_id}/customgamesettings | Set Custom Game Settings

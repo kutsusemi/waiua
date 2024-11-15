@@ -162,7 +162,7 @@ pub async fn auth_riotgames_com_authorizeredirect_urihttps3_a2_f2_fplayvalorant_
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}//auth.riotgames.com/authorize?redirect_uri=https%3A%2F%2Fplayvalorant.com%2Fopt_in&client_id=play_valorant_web_prod&response_type=token%20id_token&nonce=1&scope=account%20openid", local_var_configuration.base_path);
+    let local_var_uri_str = format!("{}//auth.riotgames.com/authorize?redirect_uri=https%3A%2F%2Fplayvalorant.com%2Fopt_in&client_id=play-valorant-web-prod&response_type=token%20id_token&nonce=1&scope=account%20openid", local_var_configuration.base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -344,7 +344,7 @@ pub async fn riot_geo_pas_si_riotgames_com_pas_v1_product_valorant_put(
     let local_var_client = &local_var_configuration.client;
 
     let local_var_uri_str = format!(
-        "{}//riot_geo.pas.si.riotgames.com/pas/v1/product/valorant",
+        "{}//riot-geo.pas.si.riotgames.com/pas/v1/product/valorant",
         local_var_configuration.base_path
     );
     let mut local_var_req_builder =
@@ -387,7 +387,7 @@ pub async fn riot_geo_pas_si_riotgames_com_pas_v1_service_chat_get(
     let local_var_client = &local_var_configuration.client;
 
     let local_var_uri_str = format!(
-        "{}//riot_geo.pas.si.riotgames.com/pas/v1/service/chat",
+        "{}//riot-geo.pas.si.riotgames.com/pas/v1/service/chat",
         local_var_configuration.base_path
     );
     let mut local_var_req_builder =

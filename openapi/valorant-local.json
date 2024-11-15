@@ -1,1443 +1,1359 @@
 {
-  "openapi": "3.0.0",
-  "servers": [
-    {
-      "url": "https://127.0.0.1:{port}/"
-    }
-  ],
-  "info": {
-    "title": "Valorant API",
-    "version": "1.0.0",
-    "description": "Valorant API"
-  },
-  "components": {
-    "securitySchemes": {
-      "basicAuth": {
-        "type": "http",
-        "scheme": "basic"
-      },
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer",
-        "bearerFormat": "JWT"
-      }
-    },
-    "schemas": {},
-    "parameters": {}
-  },
-  "paths": {
-    "/help": {
-      "get": {
-        "description": "Get help for the local client",
-        "summary": "Local Help",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "events": {
-                      "type": "object",
-                      "additionalProperties": {
-                        "type": "string",
-                        "description": "Websocket event description"
-                      }
-                    },
-                    "functions": {
-                      "type": "object",
-                      "additionalProperties": {
-                        "type": "string",
-                        "description": "Function description"
-                      }
-                    },
-                    "types": {
-                      "type": "object",
-                      "additionalProperties": {
-                        "type": "string",
-                        "description": "Type description"
-                      }
-                    }
-                  },
-                  "required": [
-                    "events",
-                    "functions",
-                    "types"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/product_session/v1/external_sessions": {
-      "get": {
-        "description": "Gets info about the running Valorant process including start arguments\n  Can be used to get shard, region, and puuid by parsing launch args.",
-        "summary": "Sessions",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": "object",
-                    "properties": {
-                      "exitCode": {
-                        "type": "number"
-                      },
-                      "exitReason": {
-                        "nullable": true
-                      },
-                      "isInternal": {
-                        "type": "boolean"
-                      },
-                      "launchConfiguration": {
-                        "type": "object",
-                        "properties": {
-                          "arguments": {
-                            "type": "array",
-                            "items": {
-                              "type": "string"
-                            }
-                          },
-                          "executable": {
-                            "type": "string"
-                          },
-                          "locale": {
-                            "type": "string",
-                            "nullable": true
-                          },
-                          "voiceLocale": {
-                            "nullable": true
-                          },
-                          "workingDirectory": {
-                            "type": "string"
-                          }
-                        },
-                        "required": [
-                          "arguments",
-                          "executable",
-                          "locale",
-                          "voiceLocale",
-                          "workingDirectory"
-                        ]
-                      },
-                      "patchlineFullName": {
-                        "type": "string",
-                        "enum": [
-                          "VALORANT",
-                          "riot_client"
-                        ]
-                      },
-                      "patchlineId": {
-                        "type": "string",
-                        "enum": [
-                          "",
-                          "live",
-                          "pbe"
-                        ]
-                      },
-                      "phase": {
-                        "type": "string"
-                      },
-                      "productId": {
-                        "type": "string",
-                        "enum": [
-                          "valorant",
-                          "riot_client"
-                        ]
-                      },
-                      "version": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "exitCode",
-                      "exitReason",
-                      "isInternal",
-                      "launchConfiguration",
-                      "patchlineFullName",
-                      "patchlineId",
-                      "phase",
-                      "productId",
-                      "version"
-                    ]
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/rso_auth/v1/authorization/userinfo": {
-      "get": {
-        "description": "Get RSO user info",
-        "summary": "RSO User Info",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "userInfo": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "userInfo"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/riotclient/region_locale": {
-      "get": {
-        "description": "Gets info about the region and locale from the Riot client",
-        "summary": "Client Region",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "locale": {
-                      "type": "string"
-                    },
-                    "region": {
-                      "type": "string"
-                    },
-                    "webLanguage": {
-                      "type": "string"
-                    },
-                    "webRegion": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "locale",
-                    "region",
-                    "webLanguage",
-                    "webRegion"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/player_account/aliases/v1/active": {
-      "get": {
-        "description": "Gets the player username and tagline",
-        "summary": "Account Alias",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "active": {
-                      "type": "boolean"
-                    },
-                    "created_datetime": {
-                      "type": "number",
-                      "description": "Milliseconds since epoch"
-                    },
-                    "game_name": {
-                      "type": "string"
-                    },
-                    "summoner": {
-                      "type": "boolean"
-                    },
-                    "tag_line": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "active",
-                    "created_datetime",
-                    "game_name",
-                    "summoner",
-                    "tag_line"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/entitlements/v1/token": {
-      "get": {
-        "description": "Gets both the token and entitlement for API usage\n`accessToken` is used as the token and `token` is used as the entitlement.",
-        "summary": "Entitlements Token",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "accessToken": {
-                      "type": "string",
-                      "description": "Used as the token in requests"
-                    },
-                    "entitlements": {
-                      "type": "array",
-                      "items": {
-                        "nullable": true
-                      }
-                    },
-                    "issuer": {
-                      "type": "string"
-                    },
-                    "subject": {
-                      "type": "string",
-                      "pattern": "^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$",
-                      "description": "Player UUID"
-                    },
-                    "token": {
-                      "type": "string",
-                      "description": "Used as the entitlement in requests"
-                    }
-                  },
-                  "required": [
-                    "accessToken",
-                    "entitlements",
-                    "issuer",
-                    "subject",
-                    "token"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/chat/v1/session": {
-      "get": {
-        "description": "Get the current session including player name and PUUID",
-        "summary": "Chat Session",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "federated": {
-                      "type": "boolean"
-                    },
-                    "game_name": {
-                      "type": "string"
-                    },
-                    "game_tag": {
-                      "type": "string"
-                    },
-                    "loaded": {
-                      "type": "boolean"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "pid": {
-                      "type": "string"
-                    },
-                    "puuid": {
-                      "type": "string",
-                      "pattern": "^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$",
-                      "description": "Player UUID"
-                    },
-                    "region": {
-                      "type": "string"
-                    },
-                    "resource": {
-                      "type": "string"
-                    },
-                    "state": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "federated",
-                    "game_name",
-                    "game_tag",
-                    "loaded",
-                    "name",
-                    "pid",
-                    "puuid",
-                    "region",
-                    "resource",
-                    "state"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/chat/v4/friends": {
-      "get": {
-        "description": "Get a list of friends",
-        "summary": "Friends",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "friends": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "activePlatform": {
-                            "type": "string",
-                            "nullable": true
-                          },
-                          "displayGroup": {
-                            "type": "string"
-                          },
-                          "game_name": {
-                            "type": "string"
-                          },
-                          "game_tag": {
-                            "type": "string"
-                          },
-                          "group": {
-                            "type": "string"
-                          },
-                          "last_online_ts": {
-                            "type": "number",
-                            "nullable": true,
-                            "description": "Milliseconds since epoch"
-                          },
-                          "name": {
-                            "type": "string"
-                          },
-                          "note": {
-                            "type": "string"
-                          },
-                          "pid": {
-                            "type": "string"
-                          },
-                          "puuid": {
-                            "type": "string",
-                            "pattern": "^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$",
-                            "description": "Player UUID"
-                          },
-                          "region": {
-                            "type": "string"
-                          }
-                        },
-                        "required": [
-                          "activePlatform",
-                          "displayGroup",
-                          "game_name",
-                          "game_tag",
-                          "group",
-                          "last_online_ts",
-                          "name",
-                          "note",
-                          "pid",
-                          "puuid",
-                          "region"
-                        ]
-                      }
-                    }
-                  },
-                  "required": [
-                    "friends"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/chat/v4/friendrequests": {
-      "post": {
-        "description": "Sends a friend request to a player. Can be used in conjunction with [GET Friend Requests] and [DELETE Remove Friend Request] to determine a player's PUUID from their game name.",
-        "summary": "Send Friend Request",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "requests": {
-                      "type": "array",
-                      "items": {
-                        "nullable": true
-                      },
-                      "description": "Empty array"
-                    }
-                  },
-                  "required": [
-                    "requests"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "description": "Removes an outgoing friend request",
-        "summary": "Remove Friend Request",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "nullable": true
-                }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "description": "Get a list of friend requests",
-        "summary": "Friend Requests",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "requests": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "game_name": {
-                            "type": "string"
-                          },
-                          "game_tag": {
-                            "type": "string"
-                          },
-                          "name": {
-                            "type": "string"
-                          },
-                          "note": {
-                            "type": "string"
-                          },
-                          "pid": {
-                            "type": "string"
-                          },
-                          "puuid": {
-                            "type": "string",
-                            "pattern": "^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$",
-                            "description": "Player UUID"
-                          },
-                          "region": {
-                            "type": "string"
-                          },
-                          "subscription": {
-                            "type": "string",
-                            "enum": [
-                              "pending_out",
-                              "pending_in"
-                            ]
-                          }
-                        },
-                        "required": [
-                          "game_name",
-                          "game_tag",
-                          "name",
-                          "note",
-                          "pid",
-                          "puuid",
-                          "region",
-                          "subscription"
-                        ]
-                      }
-                    }
-                  },
-                  "required": [
-                    "requests"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/chat/v4/presences": {
-      "get": {
-        "description": "Get a list of online friends and their activity\n  If the player is playing Valorant, `private` is a base64-encoded JSON string that contains useful information such as party and in-progress game score.",
-        "summary": "Presence",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "presences": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "actor": {
-                            "nullable": true
-                          },
-                          "basic": {
-                            "type": "string"
-                          },
-                          "details": {
-                            "nullable": true
-                          },
-                          "game_name": {
-                            "type": "string"
-                          },
-                          "game_tag": {
-                            "type": "string"
-                          },
-                          "location": {
-                            "nullable": true
-                          },
-                          "msg": {
-                            "nullable": true
-                          },
-                          "name": {
-                            "type": "string"
-                          },
-                          "patchline": {
-                            "nullable": true
-                          },
-                          "pid": {
-                            "type": "string"
-                          },
-                          "platform": {
-                            "nullable": true
-                          },
-                          "private": {
-                            "type": "string",
-                            "nullable": true
-                          },
-                          "privateJwt": {
-                            "nullable": true
-                          },
-                          "product": {
-                            "type": "string",
-                            "enum": [
-                              "valorant",
-                              "league_of_legends"
-                            ]
-                          },
-                          "puuid": {
-                            "type": "string",
-                            "pattern": "^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$",
-                            "description": "Player UUID"
-                          },
-                          "region": {
-                            "type": "string"
-                          },
-                          "resource": {
-                            "type": "string"
-                          },
-                          "state": {
-                            "type": "string",
-                            "enum": [
-                              "mobile",
-                              "dnd",
-                              "away",
-                              "chat"
-                            ]
-                          },
-                          "summary": {
-                            "type": "string"
-                          },
-                          "time": {
-                            "type": "number",
-                            "description": "Milliseconds since epoch"
-                          }
-                        },
-                        "required": [
-                          "basic",
-                          "game_name",
-                          "game_tag",
-                          "name",
-                          "pid",
-                          "private",
-                          "product",
-                          "puuid",
-                          "region",
-                          "resource",
-                          "state",
-                          "summary",
-                          "time"
-                        ]
-                      }
-                    }
-                  },
-                  "required": [
-                    "presences"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/swagger/v3/openapi.json": {
-      "get": {
-        "description": "Fetches json Swagger docs for local endpoints. Can be imported into Swagger or Insomnia.",
-        "summary": "Local Swagger Docs",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "nullable": true,
-                  "description": "Swagger doc schema"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/chat/v6/conversations/ares_parties": {
-      "get": {
-        "description": "Get information about the party chat",
-        "summary": "Party Chat Info",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "conversations": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "cid": {
-                            "type": "string"
-                          },
-                          "direct_messages": {
-                            "type": "boolean"
-                          },
-                          "global_readership": {
-                            "type": "boolean"
-                          },
-                          "message_history": {
-                            "type": "boolean"
-                          },
-                          "mid": {
-                            "type": "string"
-                          },
-                          "muted": {
-                            "type": "boolean"
-                          },
-                          "mutedRestriction": {
-                            "type": "boolean"
-                          },
-                          "type": {
-                            "type": "string",
-                            "enum": [
-                              "groupchat",
-                              "chat"
-                            ]
-                          },
-                          "uiState": {
-                            "type": "object",
-                            "properties": {
-                              "changedSinceHidden": {
-                                "type": "boolean"
-                              },
-                              "hidden": {
-                                "type": "boolean"
-                              }
-                            },
-                            "required": [
-                              "changedSinceHidden",
-                              "hidden"
-                            ]
-                          },
-                          "unread_count": {
-                            "type": "number"
-                          }
-                        },
-                        "required": [
-                          "cid",
-                          "direct_messages",
-                          "global_readership",
-                          "message_history",
-                          "mid",
-                          "muted",
-                          "mutedRestriction",
-                          "type",
-                          "uiState",
-                          "unread_count"
-                        ]
-                      }
-                    }
-                  },
-                  "required": [
-                    "conversations"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/chat/v6/conversations/ares_pregame": {
-      "get": {
-        "description": "Get information about the pre-game chat",
-        "summary": "Pre-Game Chat Info",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "conversations": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "cid": {
-                            "type": "string"
-                          },
-                          "direct_messages": {
-                            "type": "boolean"
-                          },
-                          "global_readership": {
-                            "type": "boolean"
-                          },
-                          "message_history": {
-                            "type": "boolean"
-                          },
-                          "mid": {
-                            "type": "string"
-                          },
-                          "muted": {
-                            "type": "boolean"
-                          },
-                          "mutedRestriction": {
-                            "type": "boolean"
-                          },
-                          "type": {
-                            "type": "string",
-                            "enum": [
-                              "groupchat",
-                              "chat"
-                            ]
-                          },
-                          "uiState": {
-                            "type": "object",
-                            "properties": {
-                              "changedSinceHidden": {
-                                "type": "boolean"
-                              },
-                              "hidden": {
-                                "type": "boolean"
-                              }
-                            },
-                            "required": [
-                              "changedSinceHidden",
-                              "hidden"
-                            ]
-                          },
-                          "unread_count": {
-                            "type": "number"
-                          }
-                        },
-                        "required": [
-                          "cid",
-                          "direct_messages",
-                          "global_readership",
-                          "message_history",
-                          "mid",
-                          "muted",
-                          "mutedRestriction",
-                          "type",
-                          "uiState",
-                          "unread_count"
-                        ]
-                      }
-                    }
-                  },
-                  "required": [
-                    "conversations"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/chat/v6/conversations/ares_coregame": {
-      "get": {
-        "description": "Get information about the current game chat",
-        "summary": "Current Game Chat Info",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "conversations": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "cid": {
-                            "type": "string"
-                          },
-                          "direct_messages": {
-                            "type": "boolean"
-                          },
-                          "global_readership": {
-                            "type": "boolean"
-                          },
-                          "message_history": {
-                            "type": "boolean"
-                          },
-                          "mid": {
-                            "type": "string"
-                          },
-                          "muted": {
-                            "type": "boolean"
-                          },
-                          "mutedRestriction": {
-                            "type": "boolean"
-                          },
-                          "type": {
-                            "type": "string",
-                            "enum": [
-                              "groupchat",
-                              "chat"
-                            ]
-                          },
-                          "uiState": {
-                            "type": "object",
-                            "properties": {
-                              "changedSinceHidden": {
-                                "type": "boolean"
-                              },
-                              "hidden": {
-                                "type": "boolean"
-                              }
-                            },
-                            "required": [
-                              "changedSinceHidden",
-                              "hidden"
-                            ]
-                          },
-                          "unread_count": {
-                            "type": "number"
-                          }
-                        },
-                        "required": [
-                          "cid",
-                          "direct_messages",
-                          "global_readership",
-                          "message_history",
-                          "mid",
-                          "muted",
-                          "mutedRestriction",
-                          "type",
-                          "uiState",
-                          "unread_count"
-                        ]
-                      }
-                    }
-                  },
-                  "required": [
-                    "conversations"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/chat/v6/conversations": {
-      "get": {
-        "description": "Get information about all active conversations",
-        "summary": "All Chat Info",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "conversations": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "cid": {
-                            "type": "string"
-                          },
-                          "direct_messages": {
-                            "type": "boolean"
-                          },
-                          "global_readership": {
-                            "type": "boolean"
-                          },
-                          "message_history": {
-                            "type": "boolean"
-                          },
-                          "mid": {
-                            "type": "string"
-                          },
-                          "muted": {
-                            "type": "boolean"
-                          },
-                          "mutedRestriction": {
-                            "type": "boolean"
-                          },
-                          "type": {
-                            "type": "string",
-                            "enum": [
-                              "groupchat",
-                              "chat"
-                            ]
-                          },
-                          "uiState": {
-                            "type": "object",
-                            "properties": {
-                              "changedSinceHidden": {
-                                "type": "boolean"
-                              },
-                              "hidden": {
-                                "type": "boolean"
-                              }
-                            },
-                            "required": [
-                              "changedSinceHidden",
-                              "hidden"
-                            ]
-                          },
-                          "unread_count": {
-                            "type": "number"
-                          }
-                        },
-                        "required": [
-                          "cid",
-                          "direct_messages",
-                          "global_readership",
-                          "message_history",
-                          "mid",
-                          "muted",
-                          "mutedRestriction",
-                          "type",
-                          "uiState",
-                          "unread_count"
-                        ]
-                      }
-                    }
-                  },
-                  "required": [
-                    "conversations"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/chat/v5/participants": {
-      "get": {
-        "description": "Get information about the participants of all active conversations or a specific conversation if a cid is provided",
-        "summary": "Chat Participants",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "participants": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "activePlatform": {
-                            "nullable": true
-                          },
-                          "cid": {
-                            "type": "string"
-                          },
-                          "game_name": {
-                            "type": "string"
-                          },
-                          "game_tag": {
-                            "type": "string"
-                          },
-                          "muted": {
-                            "type": "boolean"
-                          },
-                          "name": {
-                            "type": "string"
-                          },
-                          "pid": {
-                            "type": "string"
-                          },
-                          "puuid": {
-                            "type": "string",
-                            "pattern": "^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$",
-                            "description": "Player UUID"
-                          },
-                          "region": {
-                            "type": "string"
-                          }
-                        },
-                        "required": [
-                          "activePlatform",
-                          "cid",
-                          "game_name",
-                          "game_tag",
-                          "muted",
-                          "name",
-                          "pid",
-                          "puuid",
-                          "region"
-                        ]
-                      }
-                    }
-                  },
-                  "required": [
-                    "participants"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/chat/v6/messages": {
-      "post": {
-        "description": "Send a message to the specified group",
-        "summary": "Send Chat",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "messages": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "body": {
-                            "type": "string"
-                          },
-                          "cid": {
-                            "type": "string"
-                          },
-                          "game_name": {
-                            "type": "string"
-                          },
-                          "game_tag": {
-                            "type": "string"
-                          },
-                          "id": {
-                            "type": "string"
-                          },
-                          "mid": {
-                            "type": "string"
-                          },
-                          "name": {
-                            "type": "string"
-                          },
-                          "pid": {
-                            "type": "string"
-                          },
-                          "puuid": {
-                            "type": "string",
-                            "pattern": "^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$",
-                            "description": "Player UUID"
-                          },
-                          "read": {
-                            "type": "boolean"
-                          },
-                          "region": {
-                            "type": "string"
-                          },
-                          "time": {
-                            "type": "string",
-                            "description": "Time in milliseconds since epoch"
-                          },
-                          "type": {
-                            "type": "string",
-                            "enum": [
-                              "chat",
-                              "groupchat"
-                            ]
-                          }
-                        },
-                        "required": [
-                          "body",
-                          "cid",
-                          "game_name",
-                          "game_tag",
-                          "id",
-                          "mid",
-                          "name",
-                          "pid",
-                          "puuid",
-                          "read",
-                          "region",
-                          "time",
-                          "type"
-                        ]
-                      }
-                    }
-                  },
-                  "required": [
-                    "messages"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "description": "Get chat history for all conversations or a specific conversation if the cid is provided",
-        "summary": "Chat History",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "messages": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "body": {
-                            "type": "string"
-                          },
-                          "cid": {
-                            "type": "string"
-                          },
-                          "game_name": {
-                            "type": "string"
-                          },
-                          "game_tag": {
-                            "type": "string"
-                          },
-                          "id": {
-                            "type": "string"
-                          },
-                          "mid": {
-                            "type": "string"
-                          },
-                          "name": {
-                            "type": "string"
-                          },
-                          "pid": {
-                            "type": "string"
-                          },
-                          "puuid": {
-                            "type": "string",
-                            "pattern": "^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$",
-                            "description": "Player UUID"
-                          },
-                          "read": {
-                            "type": "boolean"
-                          },
-                          "region": {
-                            "type": "string"
-                          },
-                          "time": {
-                            "type": "string",
-                            "description": "Time in milliseconds since epoch"
-                          },
-                          "type": {
-                            "type": "string",
-                            "enum": [
-                              "chat",
-                              "groupchat"
-                            ]
-                          }
-                        },
-                        "required": [
-                          "body",
-                          "cid",
-                          "game_name",
-                          "game_tag",
-                          "id",
-                          "mid",
-                          "name",
-                          "pid",
-                          "puuid",
-                          "read",
-                          "region",
-                          "time",
-                          "type"
-                        ]
-                      }
-                    }
-                  },
-                  "required": [
-                    "messages"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+	"openapi": "3.0.0",
+	"servers": [
+		{
+			"url": "https://127.0.0.1:{port}/"
+		}
+	],
+	"info": {
+		"title": "Valorant API",
+		"version": "1.0.0",
+		"description": "Valorant API"
+	},
+	"components": {
+		"securitySchemes": {
+			"basicAuth": {
+				"type": "http",
+				"scheme": "basic"
+			},
+			"bearerAuth": {
+				"type": "http",
+				"scheme": "bearer",
+				"bearerFormat": "JWT"
+			}
+		},
+		"schemas": {},
+		"parameters": {}
+	},
+	"paths": {
+		"/help": {
+			"get": {
+				"description": "Get help for the local client",
+				"summary": "Local Help",
+				"security": [
+					{
+						"basicAuth": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"events": {
+											"type": "object",
+											"additionalProperties": {
+												"type": "string",
+												"description": "Websocket event description"
+											}
+										},
+										"functions": {
+											"type": "object",
+											"additionalProperties": {
+												"type": "string",
+												"description": "Function description"
+											}
+										},
+										"types": {
+											"type": "object",
+											"additionalProperties": {
+												"type": "string",
+												"description": "Type description"
+											}
+										}
+									},
+									"required": ["events", "functions", "types"]
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/product-session/v1/external-sessions": {
+			"get": {
+				"description": "Gets info about the running Valorant process including start arguments\n  Can be used to get shard, region, and puuid by parsing launch args.",
+				"summary": "Sessions",
+				"security": [
+					{
+						"basicAuth": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"additionalProperties": {
+										"type": "object",
+										"properties": {
+											"exitCode": {
+												"type": "number"
+											},
+											"exitReason": {
+												"nullable": true
+											},
+											"isInternal": {
+												"type": "boolean"
+											},
+											"launchConfiguration": {
+												"type": "object",
+												"properties": {
+													"arguments": {
+														"type": "array",
+														"items": {
+															"type": "string"
+														}
+													},
+													"executable": {
+														"type": "string"
+													},
+													"locale": {
+														"type": "string",
+														"nullable": true
+													},
+													"voiceLocale": {
+														"nullable": true
+													},
+													"workingDirectory": {
+														"type": "string"
+													}
+												},
+												"required": [
+													"arguments",
+													"executable",
+													"locale",
+													"voiceLocale",
+													"workingDirectory"
+												]
+											},
+											"patchlineFullName": {
+												"type": "string",
+												"enum": ["VALORANT", "riot_client"]
+											},
+											"patchlineId": {
+												"type": "string",
+												"enum": ["", "live", "pbe"]
+											},
+											"phase": {
+												"type": "string"
+											},
+											"productId": {
+												"type": "string",
+												"enum": ["valorant", "riot_client"]
+											},
+											"version": {
+												"type": "string"
+											}
+										},
+										"required": [
+											"exitCode",
+											"exitReason",
+											"isInternal",
+											"launchConfiguration",
+											"patchlineFullName",
+											"patchlineId",
+											"phase",
+											"productId",
+											"version"
+										]
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/rso-auth/v1/authorization/userinfo": {
+			"get": {
+				"description": "Get RSO user info",
+				"summary": "RSO User Info",
+				"security": [
+					{
+						"basicAuth": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"userInfo": {
+											"type": "string"
+										}
+									},
+									"required": ["userInfo"]
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/riotclient/region-locale": {
+			"get": {
+				"description": "Gets info about the region and locale from the Riot client",
+				"summary": "Client Region",
+				"security": [
+					{
+						"basicAuth": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"locale": {
+											"type": "string"
+										},
+										"region": {
+											"type": "string"
+										},
+										"webLanguage": {
+											"type": "string"
+										},
+										"webRegion": {
+											"type": "string"
+										}
+									},
+									"required": ["locale", "region", "webLanguage", "webRegion"]
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/player-account/aliases/v1/active": {
+			"get": {
+				"description": "Gets the player username and tagline",
+				"summary": "Account Alias",
+				"security": [
+					{
+						"basicAuth": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"active": {
+											"type": "boolean"
+										},
+										"created_datetime": {
+											"type": "number",
+											"description": "Milliseconds since epoch"
+										},
+										"game_name": {
+											"type": "string"
+										},
+										"summoner": {
+											"type": "boolean"
+										},
+										"tag_line": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"active",
+										"created_datetime",
+										"game_name",
+										"summoner",
+										"tag_line"
+									]
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/entitlements/v1/token": {
+			"get": {
+				"description": "Gets both the token and entitlement for API usage\n`accessToken` is used as the token and `token` is used as the entitlement.",
+				"summary": "Entitlements Token",
+				"security": [
+					{
+						"basicAuth": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"accessToken": {
+											"type": "string",
+											"description": "Used as the token in requests"
+										},
+										"entitlements": {
+											"type": "array",
+											"items": {
+												"nullable": true
+											}
+										},
+										"issuer": {
+											"type": "string"
+										},
+										"subject": {
+											"type": "string",
+											"pattern": "^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$",
+											"description": "Player UUID"
+										},
+										"token": {
+											"type": "string",
+											"description": "Used as the entitlement in requests"
+										}
+									},
+									"required": [
+										"accessToken",
+										"entitlements",
+										"issuer",
+										"subject",
+										"token"
+									]
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/chat/v1/session": {
+			"get": {
+				"description": "Get the current session including player name and PUUID",
+				"summary": "Chat Session",
+				"security": [
+					{
+						"basicAuth": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"federated": {
+											"type": "boolean"
+										},
+										"game_name": {
+											"type": "string"
+										},
+										"game_tag": {
+											"type": "string"
+										},
+										"loaded": {
+											"type": "boolean"
+										},
+										"name": {
+											"type": "string"
+										},
+										"pid": {
+											"type": "string"
+										},
+										"puuid": {
+											"type": "string",
+											"pattern": "^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$",
+											"description": "Player UUID"
+										},
+										"region": {
+											"type": "string"
+										},
+										"resource": {
+											"type": "string"
+										},
+										"state": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"federated",
+										"game_name",
+										"game_tag",
+										"loaded",
+										"name",
+										"pid",
+										"puuid",
+										"region",
+										"resource",
+										"state"
+									]
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/chat/v4/friends": {
+			"get": {
+				"description": "Get a list of friends",
+				"summary": "Friends",
+				"security": [
+					{
+						"basicAuth": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"friends": {
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"activePlatform": {
+														"type": "string",
+														"nullable": true
+													},
+													"displayGroup": {
+														"type": "string"
+													},
+													"game_name": {
+														"type": "string"
+													},
+													"game_tag": {
+														"type": "string"
+													},
+													"group": {
+														"type": "string"
+													},
+													"last_online_ts": {
+														"type": "number",
+														"nullable": true,
+														"description": "Milliseconds since epoch"
+													},
+													"name": {
+														"type": "string"
+													},
+													"note": {
+														"type": "string"
+													},
+													"pid": {
+														"type": "string"
+													},
+													"puuid": {
+														"type": "string",
+														"pattern": "^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$",
+														"description": "Player UUID"
+													},
+													"region": {
+														"type": "string"
+													}
+												},
+												"required": [
+													"activePlatform",
+													"displayGroup",
+													"game_name",
+													"game_tag",
+													"group",
+													"last_online_ts",
+													"name",
+													"note",
+													"pid",
+													"puuid",
+													"region"
+												]
+											}
+										}
+									},
+									"required": ["friends"]
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/chat/v4/friendrequests": {
+			"post": {
+				"description": "Sends a friend request to a player. Can be used in conjunction with [GET Friend Requests] and [DELETE Remove Friend Request] to determine a player's PUUID from their game name.",
+				"summary": "Send Friend Request",
+				"security": [
+					{
+						"basicAuth": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"requests": {
+											"type": "array",
+											"items": {
+												"nullable": true
+											},
+											"description": "Empty array"
+										}
+									},
+									"required": ["requests"]
+								}
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"description": "Removes an outgoing friend request",
+				"summary": "Remove Friend Request",
+				"security": [
+					{
+						"basicAuth": []
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"nullable": true
+								}
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"description": "Get a list of friend requests",
+				"summary": "Friend Requests",
+				"security": [
+					{
+						"basicAuth": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"requests": {
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"game_name": {
+														"type": "string"
+													},
+													"game_tag": {
+														"type": "string"
+													},
+													"name": {
+														"type": "string"
+													},
+													"note": {
+														"type": "string"
+													},
+													"pid": {
+														"type": "string"
+													},
+													"puuid": {
+														"type": "string",
+														"pattern": "^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$",
+														"description": "Player UUID"
+													},
+													"region": {
+														"type": "string"
+													},
+													"subscription": {
+														"type": "string",
+														"enum": ["pending_out", "pending_in"]
+													}
+												},
+												"required": [
+													"game_name",
+													"game_tag",
+													"name",
+													"note",
+													"pid",
+													"puuid",
+													"region",
+													"subscription"
+												]
+											}
+										}
+									},
+									"required": ["requests"]
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/chat/v4/presences": {
+			"get": {
+				"description": "Get a list of online friends and their activity\n  If the player is playing Valorant, `private` is a base64-encoded JSON string that contains useful information such as party and in-progress game score.",
+				"summary": "Presence",
+				"security": [
+					{
+						"basicAuth": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"presences": {
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"actor": {
+														"nullable": true
+													},
+													"basic": {
+														"type": "string"
+													},
+													"details": {
+														"nullable": true
+													},
+													"game_name": {
+														"type": "string"
+													},
+													"game_tag": {
+														"type": "string"
+													},
+													"location": {
+														"nullable": true
+													},
+													"msg": {
+														"nullable": true
+													},
+													"name": {
+														"type": "string"
+													},
+													"patchline": {
+														"nullable": true
+													},
+													"pid": {
+														"type": "string"
+													},
+													"platform": {
+														"nullable": true
+													},
+													"private": {
+														"type": "string",
+														"nullable": true
+													},
+													"privateJwt": {
+														"nullable": true
+													},
+													"product": {
+														"type": "string",
+														"enum": ["valorant", "league_of_legends"]
+													},
+													"puuid": {
+														"type": "string",
+														"pattern": "^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$",
+														"description": "Player UUID"
+													},
+													"region": {
+														"type": "string"
+													},
+													"resource": {
+														"type": "string"
+													},
+													"state": {
+														"type": "string",
+														"enum": ["mobile", "dnd", "away", "chat"]
+													},
+													"summary": {
+														"type": "string"
+													},
+													"time": {
+														"type": "number",
+														"description": "Milliseconds since epoch"
+													}
+												},
+												"required": [
+													"basic",
+													"game_name",
+													"game_tag",
+													"name",
+													"pid",
+													"private",
+													"product",
+													"puuid",
+													"region",
+													"resource",
+													"state",
+													"summary",
+													"time"
+												]
+											}
+										}
+									},
+									"required": ["presences"]
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/swagger/v3/openapi.json": {
+			"get": {
+				"description": "Fetches json Swagger docs for local endpoints. Can be imported into Swagger or Insomnia.",
+				"summary": "Local Swagger Docs",
+				"security": [
+					{
+						"basicAuth": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"nullable": true,
+									"description": "Swagger doc schema"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/chat/v6/conversations/ares-parties": {
+			"get": {
+				"description": "Get information about the party chat",
+				"summary": "Party Chat Info",
+				"security": [
+					{
+						"basicAuth": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"conversations": {
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"cid": {
+														"type": "string"
+													},
+													"direct_messages": {
+														"type": "boolean"
+													},
+													"global_readership": {
+														"type": "boolean"
+													},
+													"message_history": {
+														"type": "boolean"
+													},
+													"mid": {
+														"type": "string"
+													},
+													"muted": {
+														"type": "boolean"
+													},
+													"mutedRestriction": {
+														"type": "boolean"
+													},
+													"type": {
+														"type": "string",
+														"enum": ["groupchat", "chat"]
+													},
+													"uiState": {
+														"type": "object",
+														"properties": {
+															"changedSinceHidden": {
+																"type": "boolean"
+															},
+															"hidden": {
+																"type": "boolean"
+															}
+														},
+														"required": ["changedSinceHidden", "hidden"]
+													},
+													"unread_count": {
+														"type": "number"
+													}
+												},
+												"required": [
+													"cid",
+													"direct_messages",
+													"global_readership",
+													"message_history",
+													"mid",
+													"muted",
+													"mutedRestriction",
+													"type",
+													"uiState",
+													"unread_count"
+												]
+											}
+										}
+									},
+									"required": ["conversations"]
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/chat/v6/conversations/ares-pregame": {
+			"get": {
+				"description": "Get information about the pre-game chat",
+				"summary": "Pre-Game Chat Info",
+				"security": [
+					{
+						"basicAuth": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"conversations": {
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"cid": {
+														"type": "string"
+													},
+													"direct_messages": {
+														"type": "boolean"
+													},
+													"global_readership": {
+														"type": "boolean"
+													},
+													"message_history": {
+														"type": "boolean"
+													},
+													"mid": {
+														"type": "string"
+													},
+													"muted": {
+														"type": "boolean"
+													},
+													"mutedRestriction": {
+														"type": "boolean"
+													},
+													"type": {
+														"type": "string",
+														"enum": ["groupchat", "chat"]
+													},
+													"uiState": {
+														"type": "object",
+														"properties": {
+															"changedSinceHidden": {
+																"type": "boolean"
+															},
+															"hidden": {
+																"type": "boolean"
+															}
+														},
+														"required": ["changedSinceHidden", "hidden"]
+													},
+													"unread_count": {
+														"type": "number"
+													}
+												},
+												"required": [
+													"cid",
+													"direct_messages",
+													"global_readership",
+													"message_history",
+													"mid",
+													"muted",
+													"mutedRestriction",
+													"type",
+													"uiState",
+													"unread_count"
+												]
+											}
+										}
+									},
+									"required": ["conversations"]
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/chat/v6/conversations/ares-coregame": {
+			"get": {
+				"description": "Get information about the current game chat",
+				"summary": "Current Game Chat Info",
+				"security": [
+					{
+						"basicAuth": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"conversations": {
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"cid": {
+														"type": "string"
+													},
+													"direct_messages": {
+														"type": "boolean"
+													},
+													"global_readership": {
+														"type": "boolean"
+													},
+													"message_history": {
+														"type": "boolean"
+													},
+													"mid": {
+														"type": "string"
+													},
+													"muted": {
+														"type": "boolean"
+													},
+													"mutedRestriction": {
+														"type": "boolean"
+													},
+													"type": {
+														"type": "string",
+														"enum": ["groupchat", "chat"]
+													},
+													"uiState": {
+														"type": "object",
+														"properties": {
+															"changedSinceHidden": {
+																"type": "boolean"
+															},
+															"hidden": {
+																"type": "boolean"
+															}
+														},
+														"required": ["changedSinceHidden", "hidden"]
+													},
+													"unread_count": {
+														"type": "number"
+													}
+												},
+												"required": [
+													"cid",
+													"direct_messages",
+													"global_readership",
+													"message_history",
+													"mid",
+													"muted",
+													"mutedRestriction",
+													"type",
+													"uiState",
+													"unread_count"
+												]
+											}
+										}
+									},
+									"required": ["conversations"]
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/chat/v6/conversations": {
+			"get": {
+				"description": "Get information about all active conversations",
+				"summary": "All Chat Info",
+				"security": [
+					{
+						"basicAuth": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"conversations": {
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"cid": {
+														"type": "string"
+													},
+													"direct_messages": {
+														"type": "boolean"
+													},
+													"global_readership": {
+														"type": "boolean"
+													},
+													"message_history": {
+														"type": "boolean"
+													},
+													"mid": {
+														"type": "string"
+													},
+													"muted": {
+														"type": "boolean"
+													},
+													"mutedRestriction": {
+														"type": "boolean"
+													},
+													"type": {
+														"type": "string",
+														"enum": ["groupchat", "chat"]
+													},
+													"uiState": {
+														"type": "object",
+														"properties": {
+															"changedSinceHidden": {
+																"type": "boolean"
+															},
+															"hidden": {
+																"type": "boolean"
+															}
+														},
+														"required": ["changedSinceHidden", "hidden"]
+													},
+													"unread_count": {
+														"type": "number"
+													}
+												},
+												"required": [
+													"cid",
+													"direct_messages",
+													"global_readership",
+													"message_history",
+													"mid",
+													"muted",
+													"mutedRestriction",
+													"type",
+													"uiState",
+													"unread_count"
+												]
+											}
+										}
+									},
+									"required": ["conversations"]
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/chat/v5/participants": {
+			"get": {
+				"description": "Get information about the participants of all active conversations or a specific conversation if a cid is provided",
+				"summary": "Chat Participants",
+				"security": [
+					{
+						"basicAuth": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"participants": {
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"activePlatform": {
+														"nullable": true
+													},
+													"cid": {
+														"type": "string"
+													},
+													"game_name": {
+														"type": "string"
+													},
+													"game_tag": {
+														"type": "string"
+													},
+													"muted": {
+														"type": "boolean"
+													},
+													"name": {
+														"type": "string"
+													},
+													"pid": {
+														"type": "string"
+													},
+													"puuid": {
+														"type": "string",
+														"pattern": "^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$",
+														"description": "Player UUID"
+													},
+													"region": {
+														"type": "string"
+													}
+												},
+												"required": [
+													"activePlatform",
+													"cid",
+													"game_name",
+													"game_tag",
+													"muted",
+													"name",
+													"pid",
+													"puuid",
+													"region"
+												]
+											}
+										}
+									},
+									"required": ["participants"]
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/chat/v6/messages": {
+			"post": {
+				"description": "Send a message to the specified group",
+				"summary": "Send Chat",
+				"security": [
+					{
+						"basicAuth": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"messages": {
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"body": {
+														"type": "string"
+													},
+													"cid": {
+														"type": "string"
+													},
+													"game_name": {
+														"type": "string"
+													},
+													"game_tag": {
+														"type": "string"
+													},
+													"id": {
+														"type": "string"
+													},
+													"mid": {
+														"type": "string"
+													},
+													"name": {
+														"type": "string"
+													},
+													"pid": {
+														"type": "string"
+													},
+													"puuid": {
+														"type": "string",
+														"pattern": "^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$",
+														"description": "Player UUID"
+													},
+													"read": {
+														"type": "boolean"
+													},
+													"region": {
+														"type": "string"
+													},
+													"time": {
+														"type": "string",
+														"description": "Time in milliseconds since epoch"
+													},
+													"type": {
+														"type": "string",
+														"enum": ["chat", "groupchat"]
+													}
+												},
+												"required": [
+													"body",
+													"cid",
+													"game_name",
+													"game_tag",
+													"id",
+													"mid",
+													"name",
+													"pid",
+													"puuid",
+													"read",
+													"region",
+													"time",
+													"type"
+												]
+											}
+										}
+									},
+									"required": ["messages"]
+								}
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"description": "Get chat history for all conversations or a specific conversation if the cid is provided",
+				"summary": "Chat History",
+				"security": [
+					{
+						"basicAuth": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"messages": {
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"body": {
+														"type": "string"
+													},
+													"cid": {
+														"type": "string"
+													},
+													"game_name": {
+														"type": "string"
+													},
+													"game_tag": {
+														"type": "string"
+													},
+													"id": {
+														"type": "string"
+													},
+													"mid": {
+														"type": "string"
+													},
+													"name": {
+														"type": "string"
+													},
+													"pid": {
+														"type": "string"
+													},
+													"puuid": {
+														"type": "string",
+														"pattern": "^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$",
+														"description": "Player UUID"
+													},
+													"read": {
+														"type": "boolean"
+													},
+													"region": {
+														"type": "string"
+													},
+													"time": {
+														"type": "string",
+														"description": "Time in milliseconds since epoch"
+													},
+													"type": {
+														"type": "string",
+														"enum": ["chat", "groupchat"]
+													}
+												},
+												"required": [
+													"body",
+													"cid",
+													"game_name",
+													"game_tag",
+													"id",
+													"mid",
+													"name",
+													"pid",
+													"puuid",
+													"read",
+													"region",
+													"time",
+													"type"
+												]
+											}
+										}
+									},
+									"required": ["messages"]
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }

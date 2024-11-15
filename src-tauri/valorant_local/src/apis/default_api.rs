@@ -475,7 +475,7 @@ pub async fn chat_v6_conversations_ares_coregame_get(
     let local_var_client = &local_var_configuration.client;
 
     let local_var_uri_str = format!(
-        "{}/chat/v6/conversations/ares_coregame",
+        "{}/chat/v6/conversations/ares-coregame",
         local_var_configuration.base_path
     );
     let mut local_var_req_builder =
@@ -524,7 +524,7 @@ pub async fn chat_v6_conversations_ares_parties_get(
     let local_var_client = &local_var_configuration.client;
 
     let local_var_uri_str = format!(
-        "{}/chat/v6/conversations/ares_parties",
+        "{}/chat/v6/conversations/ares-parties",
         local_var_configuration.base_path
     );
     let mut local_var_req_builder =
@@ -573,7 +573,7 @@ pub async fn chat_v6_conversations_ares_pregame_get(
     let local_var_client = &local_var_configuration.client;
 
     let local_var_uri_str = format!(
-        "{}/chat/v6/conversations/ares_pregame",
+        "{}/chat/v6/conversations/ares-pregame",
         local_var_configuration.base_path
     );
     let mut local_var_req_builder =
@@ -843,7 +843,7 @@ pub async fn player_account_aliases_v1_active_get(
     let local_var_client = &local_var_configuration.client;
 
     let local_var_uri_str = format!(
-        "{}/player_account/aliases/v1/active",
+        "{}/player-account/aliases/v1/active",
         local_var_configuration.base_path
     );
     let mut local_var_req_builder =
@@ -892,7 +892,7 @@ pub async fn product_session_v1_external_sessions_get(
     let local_var_client = &local_var_configuration.client;
 
     let local_var_uri_str = format!(
-        "{}/product_session/v1/external_sessions",
+        "{}/product-session/v1/external-sessions",
         local_var_configuration.base_path
     );
     let mut local_var_req_builder =
@@ -938,7 +938,7 @@ pub async fn riotclient_region_locale_get(
     let local_var_client = &local_var_configuration.client;
 
     let local_var_uri_str = format!(
-        "{}/riotclient/region_locale",
+        "{}/riotclient/region-locale",
         local_var_configuration.base_path
     );
     let mut local_var_req_builder =
@@ -987,7 +987,7 @@ pub async fn rso_auth_v1_authorization_userinfo_get(
     let local_var_client = &local_var_configuration.client;
 
     let local_var_uri_str = format!(
-        "{}/rso_auth/v1/authorization/userinfo",
+        "{}/rso-auth/v1/authorization/userinfo",
         local_var_configuration.base_path
     );
     let mut local_var_req_builder =

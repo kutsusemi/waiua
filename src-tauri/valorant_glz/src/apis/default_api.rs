@@ -254,7 +254,7 @@ pub async fn core_game_v1_matches_current_game_match_id_get(
     let local_var_client = &local_var_configuration.client;
 
     let local_var_uri_str = format!(
-        "{}/core_game/v1/matches/{current_game_match_id}",
+        "{}/core-game/v1/matches/{current_game_match_id}",
         local_var_configuration.base_path,
         current_game_match_id = crate::apis::urlencode(current_game_match_id)
     );
@@ -313,7 +313,7 @@ pub async fn core_game_v1_matches_current_game_match_id_loadouts_get(
     let local_var_client = &local_var_configuration.client;
 
     let local_var_uri_str = format!(
-        "{}/core_game/v1/matches/{current_game_match_id}/loadouts",
+        "{}/core-game/v1/matches/{current_game_match_id}/loadouts",
         local_var_configuration.base_path,
         current_game_match_id = crate::apis::urlencode(current_game_match_id)
     );
@@ -371,7 +371,7 @@ pub async fn core_game_v1_players_puuid_disassociate_current_game_match_id_post(
     let local_var_client = &local_var_configuration.client;
 
     let local_var_uri_str = format!(
-        "{}/core_game/v1/players/{puuid}/disassociate/{current_game_match_id}",
+        "{}/core-game/v1/players/{puuid}/disassociate/{current_game_match_id}",
         local_var_configuration.base_path,
         puuid = crate::apis::urlencode(puuid),
         current_game_match_id = crate::apis::urlencode(current_game_match_id)
@@ -429,7 +429,7 @@ pub async fn core_game_v1_players_puuid_get(
     let local_var_client = &local_var_configuration.client;
 
     let local_var_uri_str = format!(
-        "{}/core_game/v1/players/{puuid}",
+        "{}/core-game/v1/players/{puuid}",
         local_var_configuration.base_path,
         puuid = crate::apis::urlencode(puuid)
     );

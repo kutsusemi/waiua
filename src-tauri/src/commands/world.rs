@@ -12,7 +12,7 @@ pub fn world_exec<'r>(state: impl MyState<'r, AppModule>) -> Result<super::dto::
 #[tauri::command]
 pub fn world(state: State<'_, AppModule>) -> Result<(), String> {
     let s = MyStateImpl::new(state);
-    world_exec(s);
+    world_exec(s)?;
     Ok(())
 }
 

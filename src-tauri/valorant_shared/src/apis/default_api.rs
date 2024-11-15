@@ -32,7 +32,7 @@ pub async fn content_service_v3_content_get(
     let local_var_client = &local_var_configuration.client;
 
     let local_var_uri_str = format!(
-        "{}/content_service/v3/content",
+        "{}/content-service/v3/content",
         local_var_configuration.base_path
     );
     let mut local_var_req_builder =

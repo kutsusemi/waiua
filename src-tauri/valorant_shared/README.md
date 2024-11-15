@@ -26,7 +26,7 @@ All URIs are relative to *https://shared..a.pvp.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**content_service_v3_content_get**](docs/DefaultApi.md#content_service_v3_content_get) | **GET** /content_service/v3/content | Fetch Content
+*DefaultApi* | [**content_service_v3_content_get**](docs/DefaultApi.md#content_service_v3_content_get) | **GET** /content-service/v3/content | Fetch Content
 
 
 ## Documentation For Models

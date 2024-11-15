@@ -40,6 +40,10 @@ valorant_pd = { path = "./valorant_pd" }
 valorant_shared = { path = "./valorant_shared" }
 anyhow = "1.0.92"
 thiserror = "1.0.68"
+reqwest = "0.12.9"
+futures = "0.3.31"
+base64 = "0.22.1"
+tauri-plugin-http = "2"
 
 [dev-dependencies]
 tauri = { version = "2", features = ["test"] }

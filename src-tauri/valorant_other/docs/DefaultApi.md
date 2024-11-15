@@ -6,12 +6,12 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**auth_riotgames_com_api_v1_authorization_post**](DefaultApi.md#auth_riotgames_com_api_v1_authorization_post) | **POST** //auth.riotgames.com/api/v1/authorization | Auth Cookies
 [**auth_riotgames_com_api_v1_authorization_put**](DefaultApi.md#auth_riotgames_com_api_v1_authorization_put) | **PUT** //auth.riotgames.com/api/v1/authorization | Multi-Factor Authentication
-[**auth_riotgames_com_authorizeredirect_urihttps3_a2_f2_fplayvalorant_com2_fopt_inclient_idplay_valorant_web_prodresponse_typetoken20id_tokennonce1scopeaccount20openid_get**](DefaultApi.md#auth_riotgames_com_authorizeredirect_urihttps3_a2_f2_fplayvalorant_com2_fopt_inclient_idplay_valorant_web_prodresponse_typetoken20id_tokennonce1scopeaccount20openid_get) | **GET** //auth.riotgames.com/authorize?redirect_uri=https%3A%2F%2Fplayvalorant.com%2Fopt_in&client_id=play_valorant_web_prod&response_type=token%20id_token&nonce=1&scope=account%20openid | Cookie Reauth
+[**auth_riotgames_com_authorizeredirect_urihttps3_a2_f2_fplayvalorant_com2_fopt_inclient_idplay_valorant_web_prodresponse_typetoken20id_tokennonce1scopeaccount20openid_get**](DefaultApi.md#auth_riotgames_com_authorizeredirect_urihttps3_a2_f2_fplayvalorant_com2_fopt_inclient_idplay_valorant_web_prodresponse_typetoken20id_tokennonce1scopeaccount20openid_get) | **GET** //auth.riotgames.com/authorize?redirect_uri=https%3A%2F%2Fplayvalorant.com%2Fopt_in&client_id=play-valorant-web-prod&response_type=token%20id_token&nonce=1&scope=account%20openid | Cookie Reauth
 [**auth_riotgames_com_userinfo_get**](DefaultApi.md#auth_riotgames_com_userinfo_get) | **GET** //auth.riotgames.com/userinfo | Player Info
 [**clientconfig_rpg_riotgames_com_api_v1_config_playerapp_riot20_client_get**](DefaultApi.md#clientconfig_rpg_riotgames_com_api_v1_config_playerapp_riot20_client_get) | **GET** //clientconfig.rpg.riotgames.com/api/v1/config/player?app=Riot%20Client | Riot Client Config
 [**entitlements_auth_riotgames_com_api_token_v1_post**](DefaultApi.md#entitlements_auth_riotgames_com_api_token_v1_post) | **POST** //entitlements.auth.riotgames.com/api/token/v1 | Entitlement
-[**riot_geo_pas_si_riotgames_com_pas_v1_product_valorant_put**](DefaultApi.md#riot_geo_pas_si_riotgames_com_pas_v1_product_valorant_put) | **PUT** //riot_geo.pas.si.riotgames.com/pas/v1/product/valorant | Riot Geo
-[**riot_geo_pas_si_riotgames_com_pas_v1_service_chat_get**](DefaultApi.md#riot_geo_pas_si_riotgames_com_pas_v1_service_chat_get) | **GET** //riot_geo.pas.si.riotgames.com/pas/v1/service/chat | PAS Token
+[**riot_geo_pas_si_riotgames_com_pas_v1_product_valorant_put**](DefaultApi.md#riot_geo_pas_si_riotgames_com_pas_v1_product_valorant_put) | **PUT** //riot-geo.pas.si.riotgames.com/pas/v1/product/valorant | Riot Geo
+[**riot_geo_pas_si_riotgames_com_pas_v1_service_chat_get**](DefaultApi.md#riot_geo_pas_si_riotgames_com_pas_v1_service_chat_get) | **GET** //riot-geo.pas.si.riotgames.com/pas/v1/service/chat | PAS Token
 
 
 

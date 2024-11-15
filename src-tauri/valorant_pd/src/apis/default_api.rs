@@ -152,7 +152,7 @@ pub async fn account_xp_v1_players_puuid_get(
     let local_var_client = &local_var_configuration.client;
 
     let local_var_uri_str = format!(
-        "{}/account_xp/v1/players/{puuid}",
+        "{}/account-xp/v1/players/{puuid}",
         local_var_configuration.base_path,
         puuid = crate::apis::urlencode(puuid)
     );
@@ -210,7 +210,7 @@ pub async fn contract_definitions_v3_item_upgrades_get(
     let local_var_client = &local_var_configuration.client;
 
     let local_var_uri_str = format!(
-        "{}/contract_definitions/v3/item_upgrades",
+        "{}/contract-definitions/v3/item-upgrades",
         local_var_configuration.base_path
     );
     let mut local_var_req_builder =
@@ -386,7 +386,7 @@ pub async fn match_details_v1_matches_match_id_get(
     let local_var_client = &local_var_configuration.client;
 
     let local_var_uri_str = format!(
-        "{}/match_details/v1/matches/{matchID}",
+        "{}/match-details/v1/matches/{matchID}",
         local_var_configuration.base_path,
         matchID = crate::apis::urlencode(match_id)
     );
@@ -445,7 +445,7 @@ pub async fn match_history_v1_history_puuid_get(
     let local_var_client = &local_var_configuration.client;
 
     let local_var_uri_str = format!(
-        "{}/match_history/v1/history/{puuid}",
+        "{}/match-history/v1/history/{puuid}",
         local_var_configuration.base_path,
         puuid = crate::apis::urlencode(puuid)
     );
@@ -676,7 +676,7 @@ pub async fn name_service_v2_players_put(
     let local_var_client = &local_var_configuration.client;
 
     let local_var_uri_str = format!(
-        "{}/name_service/v2/players",
+        "{}/name-service/v2/players",
         local_var_configuration.base_path
     );
     let mut local_var_req_builder =

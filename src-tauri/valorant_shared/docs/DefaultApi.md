@@ -4,7 +4,7 @@ All URIs are relative to *https://shared..a.pvp.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**content_service_v3_content_get**](DefaultApi.md#content_service_v3_content_get) | **GET** /content_service/v3/content | Fetch Content
+[**content_service_v3_content_get**](DefaultApi.md#content_service_v3_content_get) | **GET** /content-service/v3/content | Fetch Content
 
 
 

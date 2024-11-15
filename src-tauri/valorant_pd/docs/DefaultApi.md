@@ -4,16 +4,16 @@ All URIs are relative to *https://pd..a.pvp.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**account_xp_v1_players_puuid_get**](DefaultApi.md#account_xp_v1_players_puuid_get) | **GET** /account_xp/v1/players/{puuid} | Account XP
-[**contract_definitions_v3_item_upgrades_get**](DefaultApi.md#contract_definitions_v3_item_upgrades_get) | **GET** /contract_definitions/v3/item_upgrades | Item Upgrades
+[**account_xp_v1_players_puuid_get**](DefaultApi.md#account_xp_v1_players_puuid_get) | **GET** /account-xp/v1/players/{puuid} | Account XP
+[**contract_definitions_v3_item_upgrades_get**](DefaultApi.md#contract_definitions_v3_item_upgrades_get) | **GET** /contract-definitions/v3/item-upgrades | Item Upgrades
 [**contracts_v1_contracts_puuid_get**](DefaultApi.md#contracts_v1_contracts_puuid_get) | **GET** /contracts/v1/contracts/{puuid} | Contracts
 [**contracts_v1_contracts_puuid_special_contract_id_post**](DefaultApi.md#contracts_v1_contracts_puuid_special_contract_id_post) | **POST** /contracts/v1/contracts/{puuid}/special/{contract_id} | Activate Contract
-[**match_details_v1_matches_match_id_get**](DefaultApi.md#match_details_v1_matches_match_id_get) | **GET** /match_details/v1/matches/{matchID} | Match Details
-[**match_history_v1_history_puuid_get**](DefaultApi.md#match_history_v1_history_puuid_get) | **GET** /match_history/v1/history/{puuid} | Match History
+[**match_details_v1_matches_match_id_get**](DefaultApi.md#match_details_v1_matches_match_id_get) | **GET** /match-details/v1/matches/{matchID} | Match Details
+[**match_history_v1_history_puuid_get**](DefaultApi.md#match_history_v1_history_puuid_get) | **GET** /match-history/v1/history/{puuid} | Match History
 [**mmr_v1_leaderboards_affinity_na_queue_competitive_season_season_id_get**](DefaultApi.md#mmr_v1_leaderboards_affinity_na_queue_competitive_season_season_id_get) | **GET** /mmr/v1/leaderboards/affinity/na/queue/competitive/season/{season_id} | Leaderboard
 [**mmr_v1_players_puuid_competitiveupdates_get**](DefaultApi.md#mmr_v1_players_puuid_competitiveupdates_get) | **GET** /mmr/v1/players/{puuid}/competitiveupdates | Competitive Updates
 [**mmr_v1_players_puuid_get**](DefaultApi.md#mmr_v1_players_puuid_get) | **GET** /mmr/v1/players/{puuid} | Player MMR
-[**name_service_v2_players_put**](DefaultApi.md#name_service_v2_players_put) | **PUT** /name_service/v2/players | Name Service
+[**name_service_v2_players_put**](DefaultApi.md#name_service_v2_players_put) | **PUT** /name-service/v2/players | Name Service
 [**personalization_v2_players_puuid_playerloadout_get**](DefaultApi.md#personalization_v2_players_puuid_playerloadout_get) | **GET** /personalization/v2/players/{puuid}/playerloadout | Player Loadout
 [**personalization_v2_players_puuid_playerloadout_put**](DefaultApi.md#personalization_v2_players_puuid_playerloadout_put) | **PUT** /personalization/v2/players/{puuid}/playerloadout | Set Player Loadout
 [**restrictions_v3_penalties_get**](DefaultApi.md#restrictions_v3_penalties_get) | **GET** /restrictions/v3/penalties | Penalties

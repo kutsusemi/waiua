@@ -14,6 +14,9 @@ dependencies:
   '@tauri-apps/api':
     specifier: ^2
     version: 2.0.3
+  '@tauri-apps/plugin-http':
+    specifier: ~2
+    version: 2.0.1
   '@tauri-apps/plugin-shell':
     specifier: ^2
     version: 2.0.1
@@ -959,6 +962,12 @@ packages:
       '@tauri-apps/cli-win32-x64-msvc': 2.0.4
     dev: true
 
+  /@tauri-apps/plugin-http@2.0.1:
+    resolution: {integrity: sha512-j6IA3pVBybSCwPpsihpX4z8bs6PluuGtr06ahL/xy4D8HunNBTmRmadJrFOQi0gOAbaig4MkQ15nzNLBLy8R1A==}
+    dependencies:
+      '@tauri-apps/api': 2.0.3
+    dev: false
+
   /@tauri-apps/plugin-shell@2.0.1:
     resolution: {integrity: sha512-akU1b77sw3qHiynrK0s930y8zKmcdrSD60htjH+mFZqv5WaakZA/XxHR3/sF1nNv9Mgmt/Shls37HwnOr00aSw==}
     dependencies:
@@ -1183,6 +1192,7 @@ packages:
   /clone@1.0.4:
     resolution: {integrity: sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==}
     engines: {node: '>=0.8'}
+    requiresBuild: true
     dev: true
 
   /color-convert@2.0.1:
@@ -1294,6 +1304,7 @@ packages:
 
   /defaults@1.0.4:
     resolution: {integrity: sha512-eFuaLoy/Rxalv2kr+lqMlUnrDWV+3j4pljOIJgLIhI058IQfWJ7vXhyEIHu+HtC738klGALYxOKDO0bQP3tg8A==}
+    requiresBuild: true
     dependencies:
       clone: 1.0.4
     dev: true
