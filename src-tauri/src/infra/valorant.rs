@@ -1,11 +1,20 @@
 use std::io;
 
-use serde::Serialize;
+use glz::GlzAPI;
+use local::LocalAPI;
+use other::OtherAPI;
+use pd::PdAPI;
+use shared::SharedAPI;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 use tauri::async_runtime::block_on;
-use valorant_local::models::_product_session_v1_external_sessions_get_200_response_value::ProductId;
 
+mod error;
+mod glz;
+mod local;
+mod other;
+mod pd;
+mod shared;
 mod third_party;
 
 #[derive(Debug)]
@@ -46,7 +55,7 @@ pub enum ValorantAPIError {
     #[error("Failed to get Pd API")]
     FailedToGetPdAPI,
     #[error("API Error: {0}")]
-    APIError(#[from] APIError),
+    APIError(#[from] error::APIError),
     #[error("Failed read lockfile")]
     FailedReadLockfile,
     #[error("IO error: {0}")]
@@ -55,8 +64,9 @@ pub enum ValorantAPIError {
     ReqwestError(#[from] reqwest::Error),
 }
 
+#[async_trait::async_trait]
 pub trait ValorantAPI: shaku::Interface {
-    fn get_game_state(&self) -> Result<(), ValorantAPIError>;
+    async fn get_game_state(&self) -> Result<(), ValorantAPIError>;
 }
 
 #[derive(shaku::Component)]
@@ -66,10 +76,26 @@ pub struct ValorantAPIImpl {
     initialized: Option<Result<(), ValorantAPIError>>,
     #[shaku(default)]
     uni_state: UniState,
+    #[shaku(default=Err(ValorantAPIError::NotInitialized("glz".to_string())))]
+    glz: Result<GlzAPI, ValorantAPIError>,
     #[shaku(default=Err(ValorantAPIError::NotInitialized("Local".to_string())))]
     local: Result<LocalAPI, ValorantAPIError>,
+    #[shaku(default=Err(ValorantAPIError::NotInitialized("Other".to_string())))]
+    other: Result<OtherAPI, ValorantAPIError>,
     #[shaku(default=Err(ValorantAPIError::NotInitialized("Pd".to_string())))]
     pd: Result<PdAPI, ValorantAPIError>,
+    #[shaku(default=Err(ValorantAPIError::NotInitialized("Shared".to_string())))]
+    shared: Result<SharedAPI, ValorantAPIError>,
+}
+
+#[async_trait::async_trait]
+impl ValorantAPI for ValorantAPIImpl {
+    async fn get_game_state(&self) -> Result<(), ValorantAPIError> {
+        match self.get_pd()?.get_token().await {
+            Ok(_) => Ok(()),
+            Err(e) => Err(ValorantAPIError::APIError(e)),
+        }
+    }
 }
 
 impl ValorantAPIImpl {
@@ -77,8 +103,11 @@ impl ValorantAPIImpl {
         let mut api = ValorantAPIImpl {
             initialized: None,
             uni_state: UniState::default(),
+            glz: Err(ValorantAPIError::NotInitialized("Glz".to_string())),
             local: Err(ValorantAPIError::NotInitialized("Local".to_string())),
+            other: Err(ValorantAPIError::NotInitialized("Other".to_string())),
             pd: Err(ValorantAPIError::NotInitialized("Pd".to_string())),
+            shared: Err(ValorantAPIError::NotInitialized("Shared".to_string())),
         };
         block_on(api.init());
 
@@ -86,33 +115,79 @@ impl ValorantAPIImpl {
     }
 
     async fn init(&mut self) {
+        self.init_other();
+        match self.load_lockfile() {
+            Err(e) => {
+                self.initialized = Some(Err(e));
+                return;
+            }
+            Ok(_) => {}
+        }
         self.init_local();
         let results = vec![
             self.get_token().await,
             self.get_region().await,
             self.get_version().await,
         ];
+        self.init_glz();
+        self.init_pd();
+        self.init_shared();
         self.initialized = results.into_iter().find(|r| r.is_err());
     }
 
-    fn init_local(&mut self) {
-        match self.load_lockfile().and(
-            self.uni_state
-                .port
-                .clone()
-                .and_then(|port| {
-                    self.uni_state
-                        .local_password
-                        .clone()
-                        .map(|password| (port, password))
-                })
-                .ok_or(ValorantAPIError::FailedReadLockfile),
+    fn init_glz(&mut self) {
+        match (
+            self.uni_state.region.clone(),
+            self.uni_state.shard.clone(),
+            self.uni_state.entitlement.clone(),
+            self.uni_state.version.clone(),
+            self.uni_state.platform.clone(),
         ) {
-            Ok((port, local_password)) => self.local = Ok(LocalAPI::new(port, local_password)),
-            Err(e) => {
-                self.local = Err(e);
-                return;
+            (Some(region), Some(shard), Some(entitlement), Some(version), Some(platform)) => {
+                self.glz = Ok(GlzAPI::new(region, shard, entitlement, version, platform))
             }
+            _ => self.glz = Err(ValorantAPIError::NotInitialized("Glz".to_string())),
+        }
+    }
+    fn init_local(&mut self) {
+        match (
+            self.uni_state.port.clone(),
+            self.uni_state.local_password.clone(),
+        ) {
+            (Some(port), Some(local_password)) => {
+                self.local = Ok(LocalAPI::new(port, local_password))
+            }
+            _ => self.local = Err(ValorantAPIError::NotInitialized("Local".to_string())),
+        }
+    }
+    fn init_other(&mut self) {
+        self.other = Ok(OtherAPI::new())
+    }
+    fn init_pd(&mut self) {
+        match (
+            self.uni_state.region.clone(),
+            self.uni_state.ppuuid.clone(),
+            self.uni_state.entitlement.clone(),
+            self.uni_state.version.clone(),
+            self.uni_state.platform.clone(),
+        ) {
+            (Some(region), Some(puuid), Some(entitlement), Some(version), Some(platform)) => {
+                self.pd = Ok(PdAPI::new(region, puuid, entitlement, version, platform))
+            }
+            _ => self.pd = Err(ValorantAPIError::NotInitialized("Pd".to_string())),
+        }
+    }
+    fn init_shared(&mut self) {
+        match (
+            self.uni_state.shard.clone(),
+            self.uni_state.entitlement.clone(),
+            self.uni_state.version.clone(),
+            self.uni_state.platform.clone(),
+        ) {
+            (Some(shard), Some(entitlement), Some(version), Some(platform)) => {
+                self.shared = Ok(SharedAPI::new(shard, entitlement, version, platform))
+            }
+            _ => self.shared = Err(ValorantAPIError::NotInitialized("Shared".to_string())),
         }
     }
 
@@ -164,175 +239,6 @@ impl ValorantAPIImpl {
     async fn get_version(&mut self) -> Result<(), ValorantAPIError> {
         let res = third_party::version().await?;
         self.uni_state.version = Some(res.data.version);
-        Ok(())
-    }
-}
-
-impl ValorantAPI for ValorantAPIImpl {
-    fn get_game_state(&self) -> Result<(), ValorantAPIError> {
-        Ok(())
-        // match self.get_pd()?.get_token().await {
-        //     Ok(_) => Ok(crate::domain::game_state::GameState::Login),
-        //     Err(e) => Err(ValorantAPIError::APIError(e)),
-        // }
-    }
-}
-
-#[derive(thiserror::Error, Debug)]
-pub enum APIError {
-    #[error("API error: {0}")]
-    APIError(String),
-}
-
-impl<T: Serialize> From<valorant_local::apis::Error<T>> for APIError {
-    fn from(value: valorant_local::apis::Error<T>) -> Self {
-        match value {
-            valorant_local::apis::Error::Reqwest(e) => {
-                APIError::APIError(format!("Reqwest: {:?}", e))
-            }
-            valorant_local::apis::Error::Io(e) => APIError::APIError(format!("IO: {:?}", e)),
-            valorant_local::apis::Error::Serde(e) => APIError::APIError(format!("Serde: {:?}", e)),
-            valorant_local::apis::Error::ResponseError(e) => {
-                APIError::APIError(format!("status code {}: {}", e.status, e.content))
-            }
-        }
-    }
-}
-impl<T: Serialize> From<valorant_pd::apis::Error<T>> for APIError {
-    fn from(value: valorant_pd::apis::Error<T>) -> Self {
-        match value {
-            valorant_pd::apis::Error::Reqwest(e) => APIError::APIError(format!("Reqwest: {:?}", e)),
-            valorant_pd::apis::Error::Io(e) => APIError::APIError(format!("IO: {:?}", e)),
-            valorant_pd::apis::Error::Serde(e) => APIError::APIError(format!("Serde: {:?}", e)),
-            valorant_pd::apis::Error::ResponseError(e) => {
-                APIError::APIError(format!("status code {}: {}", e.status, e.content))
-            }
-        }
-    }
-}
-
-#[derive(Debug, Default)]
-pub struct LocalAPI {
-    port: String,
-    local_password: String,
-}
-
-struct LocalAPIGetTokenResponse {
-    pub token: String,
-    pub entitlement: String,
-    pub ppuuid: String,
-}
-
-struct LocalAPIGetRegionResponse {
-    pub region: String,
-    pub shard: String,
-}
-impl LocalAPI {
-    fn new(port: String, local_password: String) -> Self {
-        LocalAPI {
-            port: port,
-            local_password: local_password,
-        }
-    }
-
-    fn get_config(&self) -> valorant_local::apis::configuration::Configuration {
-        let mut config = valorant_local::apis::configuration::Configuration::default();
-        config.client = reqwest::Client::builder()
-            .danger_accept_invalid_certs(true)
-            .build()
-            .unwrap();
-        config.base_path = config.base_path + &self.port;
-        config.basic_auth = Some(("riot".to_string(), Some(self.local_password.clone())));
-        config
-    }
-
-    async fn get_token(&self) -> Result<LocalAPIGetTokenResponse, APIError> {
-        let res = valorant_local::apis::default_api::entitlements_v1_token_get(&self.get_config())
-            .await?;
-        Ok(LocalAPIGetTokenResponse {
-            token: res.access_token,
-            entitlement: res.token,
-            ppuuid: res.subject,
-        })
-    }
-
-    async fn get_region(&self) -> Result<LocalAPIGetRegionResponse, APIError> {
-        let res = valorant_local::apis::default_api::product_session_v1_external_sessions_get(
-            &self.get_config(),
-        )
-        .await?;
-        let parts = res
-            .values()
-            .find(|v| v.product_id == ProductId::Valorant)
-            .map(|v| {
-                v.launch_configuration.arguments[4]
-                    .split("=")
-                    .flat_map(|s| s.split("&"))
-                    .collect::<Vec<&str>>()
-            })
-            .ok_or(APIError::APIError("Failed to get region".to_string()))?;
-        match parts[1] {
-            "latam" => Ok(LocalAPIGetRegionResponse {
-                region: "latam".to_string(),
-                shard: "br".to_string(),
-            }),
-            "na" => Ok(LocalAPIGetRegionResponse {
-                region: "na".to_string(),
-                shard: "br".to_string(),
-            }),
-            _ => Ok(LocalAPIGetRegionResponse {
-                region: parts[1].to_string(),
-                shard: parts[1].to_string(),
-            }),
-        }
-    }
-}
-
-#[derive(Debug, Default)]
-pub struct PdAPI {
-    region: String,
-    puuid: String,
-    entitlement: String,
-    verion: String,
-    platform: String,
-}
-
-impl PdAPI {
-    fn new(
-        region: String,
-        puuid: String,
-        entitlement: String,
-        verion: String,
-        platform: String,
-    ) -> Self {
-        PdAPI {
-            region: region,
-            puuid: puuid,
-            entitlement: entitlement,
-            verion: verion,
-            platform: platform,
-        }
-    }
-
-    fn get_config(&self) -> valorant_pd::apis::configuration::Configuration {
-        let mut config = valorant_pd::apis::configuration::Configuration::default();
-        config.client = reqwest::Client::builder()
-            .danger_accept_invalid_certs(true)
-            .build()
-            .unwrap();
-        config.base_path = format!("https://pd.{}.a.pvp.net", self.region);
-        config
-    }
-
-    async fn get_token(&self) -> Result<(), APIError> {
-        let a = valorant_pd::apis::default_api::account_xp_v1_players_puuid_get(
-            &self.get_config(),
-            self.puuid.as_str(),
-            self.entitlement.as_str(),
-            self.verion.as_str(),
-            self.platform.as_str(),
-        )
-        .await?;
         Ok(())
     }
 }
